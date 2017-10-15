@@ -4,18 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import  {AboutComponent} from "./about/about.component";
 import { AppComponent } from './home/app.component';
-import { FormComponent } from "./form/form.component";
+import { InscriptionsComponent } from "./inscriptions/inscriptions.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
-   { path: 'form', component: FormComponent }
+   { path: 'form', component: InscriptionsComponent }
 ];
 
 @NgModule({
   imports: [BrowserModule,HttpModule,RouterModule.forRoot(appRoutes),FormsModule],
-  declarations: [AppComponent,FormComponent,AboutComponent],
+  declarations: [AppComponent,InscriptionsComponent,AboutComponent],
   bootstrap: [AppComponent]
 
   
