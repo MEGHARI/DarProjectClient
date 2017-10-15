@@ -3,19 +3,26 @@ import {NgForm} from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import  {AboutComponent} from "./about/about.component";
-import { AppComponent } from './home/app.component';
-import { InscriptionsComponent } from "./inscriptions/inscriptions.component";
+import { HomeComponent } from './home/home.component';
+import { LoginModalComponent } from './loginModal/loginModal.component';
+import { AppComponent } from './app.component';
+import { SignupComponent } from "./signup/signup.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
-
+import { LoginComponent } from "./login/login.component";
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
-   { path: 'form', component: InscriptionsComponent }
+   { path: 'login', component: LoginComponent },
+   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
+   { path: '', component: HomeComponent },
+   { path: 'home', component: HomeComponent },
+   { path: 'signup', component: SignupComponent  }
 ];
 
 @NgModule({
   imports: [BrowserModule,HttpModule,RouterModule.forRoot(appRoutes),FormsModule],
-  declarations: [AppComponent,InscriptionsComponent,AboutComponent],
+  declarations: [AppComponent,SignupComponent ,AboutComponent,
+    LoginComponent, HomeComponent, LoginModalComponent],
   bootstrap: [AppComponent]
 
   
