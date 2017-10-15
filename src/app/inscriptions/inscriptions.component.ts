@@ -5,8 +5,8 @@ import{Router} from "@angular/router";
 import * as myGlobals from "../globals";
 @Component({
 
-    templateUrl:"form.component.html",
-    styleUrls:["form.component.css"],
+    templateUrl:"inscriptions.component.html",
+    styleUrls:["inscriptions.component.css"],
     selector :"app-root",
     providers :[service]
 })
