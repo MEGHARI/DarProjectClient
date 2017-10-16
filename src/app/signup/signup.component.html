@@ -5,50 +5,77 @@
         </div>
         <div class="panel-body center">
           <div class="col-xs-6">
-<form (onSubmit)="signup()" [formGroup]="formGroupSignup">
+<form (onSubmit)="signup(formGroupSignup.value)" [formGroup]="formGroupSignup">
+      
+  <div class="form-group has-feedback " [ngClass]="{'has-error':!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0,'has-success':formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0}">
+          <label >Nom :</label>
+          <input type="Text" formControlName = "name" class="form-control"  placeholder="nom" >
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0"></span>
+          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0"></span>           
+  </div>
+  <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0,'has-success':formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0}">
+          <label>Prenom :</label>
+          <input type="text" class="form-control" formControlName="firstName" placeholder="prenom">
+          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0"></span>
+          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0"></span>             
+  </div>
+  <div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.addresse.valid && formGroupSignup.controls.addresse.value.length >0,'has-success':formGroupSignup.controls.addresse.valid && formGroupSignup.controls.addresse.value.length >0}">                
+      <label > Addresse:</label>
+      <input type="text" class="form-control" formControlName="addresse" placeholder="addresse">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.addresse.valid && formGroupSignup.controls.addresse.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.addresse.valid && formGroupSignup.controls.addresse.value.length >0"></span>  
+  </div>
+</div>
+<div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0,'has-success':formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0}">                
+      <label > Code postal:</label>
+      <input type="text" class="form-control" formControlName="postalCode" placeholder="code postal">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>  
+  </div>
+</div>
+<div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.dateOfBirth.valid && formGroupSignup.controls.dateOfBirth.value.length >0,'has-success':formGroupSignup.controls.dateOfBirth.valid && formGroupSignup.controls.dateOfBirth.value.length >0}">                
+      <label > Date de naissance:</label>
+      <input type="date" class="form-control" formControlName="dateOfBirth" placeholder="Date de naissance">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.dateOfBirth.valid && formGroupSignup.controls.dateOfBirth.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.dateOfBirth.valid && formGroupSignup.controls.dateOfBirth.value.length >0"></span>  
+  </div>
+</div>
+
+<div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0,'has-success':formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0}">                
+      <label > Addresse mail:</label>
+      <input type="mail" class="form-control" formControlName="mail" placeholder="Date de naissance">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0"></span>  
+  </div>
+</div>
+      
+<div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0,'has-success':formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0}">                
+      <label > Mot de passe :</label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Date de naissance">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0"></span>  
+  </div>
+</div>
+<div class="form-group">
+    <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0,'has-success':formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0}">                
+      <label > Confirmer mot de passe :</label>
+      <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Date de naissance">
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0"></span>
+      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0"></span>  
+  </div>
+</div>
         <div class="form-group">
-          <label for="exampleInputEmail1">Nom :</label>
-          <input type="Text" formControlName = "name"class="form-control" id="nom" placeholder="nom" >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Prenom :</label>
-          <input type="text" class="form-control" id="prenom" placeholder="prenom">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1"> Addresse:</label>
-            <input type="password" class="form-control" placeholder="addresse">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1"> Code Postal</label>
-            <input type="text" class="form-control"  placeholder="code postal">
-            </div>
-        <div class="form-group">
-             <label for="exampleInputPassword1"> Date de naissance</label>
-            <input type="date" class="form-control">
-         </div>
-         <div class="form-group">
-            <label for="exampleInputPassword1">Email</label>
-            <input type="password" class="form-control" placeholder="email" >
-        </div>
-        <div class="form-group">
-                <label for="exampleInputPassword1">Mot de passes:</label>
-                <input type="text" class="form-control" placeholder="Password">
-            </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1"> Repeter mot de passe :</label>
-            <input type="text" class="form-control" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputFile">Photo de profil</label>
+          <label >Photo de profil</label>
           <input type="file" id="exampleInputFile">
         </div>
         
-        <button type="submit" class="btn btn-primary">m'inscrire</button>
+        <button type="submit" [disabled]="!formGroupSignup.valid" class="btn btn-primary">m'inscrire</button>
       </form>
-          </div>
-          <div class="col-xs-6">
-            <span class="text-danger" [hidden]="formGroupSignup.controls.name.valid" >erreur</span>
           </div>
     </div>
 </div>
-      
