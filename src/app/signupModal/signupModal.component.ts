@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'signupModal-name',
     templateUrl: './signupModal.component.html',
-    styleUrls: ['./signupModal.component.scss']
+    styleUrls: ['./signupModal.component.css']
 })
-export class NameComponent implements OnInit {
+export class SignupModalComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }

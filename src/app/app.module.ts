@@ -7,9 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { LoginModalComponent } from './loginModal/loginModal.component';
 import { AppComponent } from './app.component';
 import { SignupComponent } from "./signup/signup.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
+import {SignupModalComponent} from "./signupModal/signupModal.component";
+
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginComponent },
@@ -20,9 +22,11 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule,HttpModule,RouterModule.forRoot(appRoutes),FormsModule],
+  imports: [BrowserModule,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
+    ,ReactiveFormsModule],
+  
   declarations: [AppComponent,SignupComponent ,AboutComponent,
-    LoginComponent, HomeComponent, LoginModalComponent],
+    LoginComponent, HomeComponent, LoginModalComponent,SignupComponent,SignupModalComponent],
   bootstrap: [AppComponent]
 
   
