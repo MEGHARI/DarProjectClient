@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component,OnInit } from "@angular/core";
 import {signupService} from "./signup.service";
-import {NgForm,NgControl,NgModel} from "@angular/forms";
+import {FormBuilder,FormControl,FormGroup,Validators} from "@angular/forms";
 import{Router} from "@angular/router";
 import * as myGlobals from "../globals";
 @Component({
@@ -10,15 +10,13 @@ import * as myGlobals from "../globals";
     selector :"app-root",
     providers :[signupService]
 })
-export class SignupComponent {
-   public inf :string; 
-   public name :string;
-    
-constructor(public service :signupService,private route : Router){}
-public onInfo(n : NgForm){
-    this.service.getInfo().subscribe((data) => this.inf = data);
-    //this.inf = n.name;
-    //this.route.navigate(["/about"]);
-    alert(myGlobals.url);
+export class SignupComponent implements OnInit{
+    formGroupSignup : FormGroup;
+constructor(public formBuilderSignup : FormBuilder){}
+ ngOnInit(){
+    this.formGroupSignup = this.formBuilderSignup.group({
+        name : ['',[Validators.required,Validators.minLength(6)]]
+    })
 }
+
 }
