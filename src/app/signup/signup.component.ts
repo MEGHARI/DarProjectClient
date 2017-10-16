@@ -19,8 +19,9 @@ constructor(public formBuilderSignup : FormBuilder){}
 
         name : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         firstName : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
-        mail : ['',[Validators.required,Validators.pattern("^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$")]],
-        postalCode : ['',[Validators.required,Validators.pattern(" \^[0-9]{5,5}$\ ")]],
+        mail : ['',[Validators.required,
+        Validators.pattern("/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i")]],
+        postalCode : ['',[Validators.required,Validators.pattern("[0-9]{5,5}")]],
         dateOfBirth :['',[Validators.required,Validators.pattern("\^([0-3][0-9]})(/)([0-9]{2,2})(/)([0-3]{2,2})$\ ")]],
         image :['',Validators.required],
         password:['',Validators.required],
