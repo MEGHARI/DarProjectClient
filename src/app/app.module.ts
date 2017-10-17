@@ -11,6 +11,8 @@ import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
 import {SignupModalComponent} from "./signupModal/signupModal.component";
+import { SearchGameComponent } from "./searchGame/searchGame.component";
+import { Ng2CompleterModule } from "ng2-completer";
 
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
@@ -22,11 +24,12 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
+  imports: [BrowserModule,Ng2CompleterModule ,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
     ,ReactiveFormsModule],
   
   declarations: [AppComponent,SignupComponent ,AboutComponent,
-    LoginComponent, HomeComponent, LoginModalComponent,SignupComponent,SignupModalComponent],
+    LoginComponent, HomeComponent, LoginModalComponent,
+    SignupComponent,SignupModalComponent,SearchGameComponent],
   bootstrap: [AppComponent]
 
   
