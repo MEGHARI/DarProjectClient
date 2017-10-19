@@ -13,7 +13,7 @@ import { LoginComponent } from "./login/login.component";
 import {SignupModalComponent} from "./signupModal/signupModal.component";
 import { SearchGameComponent } from "./searchGame/searchGame.component";
 import { Ng2CompleterModule } from "ng2-completer";
-
+import { AutocompleteModule } from 'ng2-input-autocomplete';
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginComponent },
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [BrowserModule,Ng2CompleterModule ,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
-    ,ReactiveFormsModule],
+    ,ReactiveFormsModule,AutocompleteModule.forRoot()],
   
   declarations: [AppComponent,SignupComponent ,AboutComponent,
     LoginComponent, HomeComponent, LoginModalComponent,

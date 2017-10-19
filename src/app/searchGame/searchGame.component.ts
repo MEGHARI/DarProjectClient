@@ -3,7 +3,8 @@ import { CompleterService, CompleterData } from 'ng2-completer';
 
 @Component({
   selector: 'search',
-  templateUrl: 'searchGames.component.html' 
+  templateUrl: './searchGames.component.html' ,
+  styleUrls:["./searchGames.component.css"]
 })
 export class SearchGameComponent {
 

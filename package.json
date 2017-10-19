@@ -23,6 +23,7 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "ng2-completer": "^1.6.3",
+    "ng2-input-autocomplete": "0.0.11",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
