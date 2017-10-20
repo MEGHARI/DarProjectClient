@@ -1,1 +1,62 @@
- 
+.outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+}
+
+@media (min-width: 768px) {
+    .row{
+        padding: 0px 70px 0px 70px;
+    }
+}
+
+@media (max-width: 767px) {
+    .row{
+        padding: 0px 20px 0px 20px;
+        margin: 0px 5px 0px 5px;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+}
+
+.row{
+    color: #555;
+    border: 1px solid rgb(202, 104, 104);
+    border-radius: 4px;
+    box-shadow: 0 0 20px grey;
+}
+
+:host /deep/ .completer-input {
+    width: 100%;
+    }
+
+
+:host >>> .completer-dropdown {
+    width: 90% !important;
+    max-width: 515px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100px;
+    color: red;
+}
+
+:host >>> .completer-row
+{ display: inherit; background:blue; }
+
+:host >>> .completer-selected-row {
+    background-color: lightblue;
+    color: yellow;
+}
+
+:host >>> .completer-row p {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.btn-custom{
+    min-width: 100%; 
+}

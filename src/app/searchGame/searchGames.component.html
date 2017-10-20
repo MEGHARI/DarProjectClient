@@ -1,20 +1,19 @@
-
-
-<div class="centered-search">
+<div class="outer">
       <div class="row centered">
-        <div class="col-lg-12">
         <h1>Trouver des milliers <br /> 
           de jeux à échanger.</h1>
         
-          <div class="form-group col-xs-3 col-xs-push-4 ">
-            <ng2-completer [(ngModel)]="searchStr"  [inputClass]="['form-control']" [ngModelOptions]="{standalone: true}" [datasource]="dataService" [minSearchLength]="0"></ng2-completer>
+          <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
+
+            <ng2-completer [(ngModel)]="searchStr"  [inputClass]="['form-control']"
+            [ngModelOptions]="{standalone: true}"
+            [datasource]="dataService"
+            [minSearchLength]="0"
+            (selected)="selectionItem($event)" ></ng2-completer>
 
           </div>
-          <div >
-              <button type="submit" class="btn btn-warning btn-lg">Recherche</button>
-              
+          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
+              <button type="submit" class="btn btn-warning btn-custom">Recherche</button>
             </div>
-       
-      </div>
     </div> 
   </div> 

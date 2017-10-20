@@ -24,4 +24,8 @@ export class SearchGameComponent {
   constructor(private completerService: CompleterService) {
     this.dataService = completerService.local(this.searchData, 'color', 'color');
   }
+
+  selectionItem(s){
+    console.log(s);
+  }
 }
