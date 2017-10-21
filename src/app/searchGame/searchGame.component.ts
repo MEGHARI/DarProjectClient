@@ -22,7 +22,7 @@ export class SearchGameComponent {
   ];
 
   constructor(private completerService: CompleterService) {
-    this.dataService = completerService.local(this.searchData, 'color', 'color');
+    this.dataService = completerService.local(this.searchData, 'color,: value', 'color,value');
   }
 
   selectionItem(s){

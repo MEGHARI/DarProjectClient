@@ -8,19 +8,19 @@
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-6">
                     <div class="form-group">
-                        <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0,'has-success':formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0}">                
+                        <div class="form-group has-feedback">                
                           <label > Addresse mail:</label>
                           <input type="email" class="form-control" formControlName="mail" placeholder="addresse mail">
-                          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0"></span>
-                          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0"></span>  
+                         <!-- <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0"></span>
+                          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupLogin.controls.mail.valid && formGroupLogin.controls.mail.value.length >0"></span>-->  
                       </div>
                     </div>
                     <div class="form-group">
-                        <div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0,'has-success':formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0}">                
+                        <div class="form-group has-feedback">                
                           <label > Mot de passe :</label>
                           <input type="password" class="form-control" formControlName="password" >
-                          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0"></span>
-                          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0"></span>  
+                          <!--<span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0"></span>
+                          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupLogin.controls.password.valid && formGroupLogin.controls.password.value.length >0"></span>  -->
                       </div>
                     </div>   
                     

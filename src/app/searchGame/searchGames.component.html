@@ -5,11 +5,12 @@
         
           <div class="form-group col-lg-10 col-md-10 col-sm-10 col-xs-12">
 
-            <ng2-completer [(ngModel)]="searchStr"  [inputClass]="['form-control']"
+            <ng2-completer [(ngModel)]="searchStr"  
+            [inputClass]="['form-control']"
             [ngModelOptions]="{standalone: true}"
             [datasource]="dataService"
             [minSearchLength]="0"
-            (selected)="selectionItem($event)" ></ng2-completer>
+             ></ng2-completer>
 
           </div>
           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-12">
@@ -17,3 +18,6 @@
             </div>
     </div> 
   </div> 
+
+
+  
