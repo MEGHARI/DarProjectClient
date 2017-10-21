@@ -1,9 +1,5 @@
 
-  <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title">Connexion</h3>
-      </div>
-      <div class="panel-body">
+  
           <form class="form-horizontal" [formGroup]="formGroupLogin" >
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-6">
@@ -34,9 +30,10 @@
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" class="btn btn-primary"[disabled]="!formGroupLogin.valid">Sign in</button>
+                  <img *ngIf="loading" src="" />     
                 </div>
               </div>
             </form>
-      </div>
-    </div>
+    
+   
     
