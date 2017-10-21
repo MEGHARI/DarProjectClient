@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import {NgForm} from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { AuthModule } from 'angular2-auth';
+//import { AuthModule } from 'angular2-auth';
 import  {AboutComponent} from "./about/about.component";
 import { HomeComponent } from './home/home.component';
 import { LoginModalComponent } from './loginModal/loginModal.component';
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [BrowserModule,Ng2CompleterModule ,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
-    ,ReactiveFormsModule,AuthModule.forRoot()],
+    ,ReactiveFormsModule],
   
   declarations: [AppComponent,SignupComponent ,AboutComponent,
     LoginComponent, HomeComponent, LoginModalComponent,
