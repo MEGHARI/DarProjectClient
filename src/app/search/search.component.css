@@ -1,0 +1,62 @@
+@media (min-width: 990px){
+    .page{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+@media (max-width: 989px){
+.page{
+    /*width: 80%;
+    height: 100%;
+    background-color: red;*/
+    padding-left: 2%;
+    padding-right: 2%;
+}
+}
+
+.listGames{
+    display:block;
+    /*background-color: black;*/
+}
+
+.game{
+    display:inline-flex;
+    width: 100%;
+    /*background-color: green;*/
+    padding : 10px;
+    margin-bottom:10px;
+    /*border-bottom: 1px solid #d8c7c7;*/
+}
+
+.game:hover{
+    background-color: rgb(225, 225, 225);
+}
+
+.thumb img{
+    width:100px;
+    height:100px;
+    /*background-color: yellow;*/
+}
+
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.informations{
+
+    display:inline-block;
+    padding: 5px;
+    /*background-color: red;*/
+}
+
+.titleGame{
+    font-size: 24px;
+}
+
+.description{
+    font-size: 14px;
+}
+

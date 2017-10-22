@@ -13,12 +13,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
 import {SignupModalComponent} from "./signupModal/signupModal.component";
 import { SearchGameComponent } from "./searchGame/searchGame.component";
+import { SearchComponent} from "./search/search.component"
 import { Ng2CompleterModule } from "ng2-completer";
 import {LoginPageComponent} from './loginPage/loginPage.component'
 import {SignupPageComponent} from './signupPage/signupPage.component'
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginPageComponent },
+   { path: 'search', component: SearchComponent },
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
    { path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
@@ -31,10 +33,10 @@ const appRoutes: Routes = [
   
   declarations: [AppComponent,SignupComponent ,AboutComponent,
     LoginComponent, HomeComponent, LoginModalComponent,
-    SignupComponent,SignupModalComponent,SearchGameComponent,LoginPageComponent,SignupPageComponent],
+    SignupComponent,SignupModalComponent,SearchGameComponent,
+    LoginPageComponent,SignupPageComponent, SearchComponent],
   bootstrap: [AppComponent]
 
   
 })
 export class AppModule {}
-
