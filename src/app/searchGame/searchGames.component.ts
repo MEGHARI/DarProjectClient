@@ -6,7 +6,7 @@ import { CompleterService, CompleterData } from 'ng2-completer';
   templateUrl: './searchGames.component.html' ,
   styleUrls:["./searchGames.component.css"]
 })
-export class SearchGameComponent {
+export class SearchGamesComponent {
 
   protected searchStr: string;
   protected captain: string;
