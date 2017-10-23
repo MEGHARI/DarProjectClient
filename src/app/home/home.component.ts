@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from './home-service.component'
+import { HomeService } from './homeService.component'
 
 @Component({
     selector: 'home',
@@ -13,11 +13,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() { 
-        this.homeService.doSomething().subscribe(
-            data => console.log(data),
-            error => console.log(error),
-            () => console.log('aaa')
-        );
     }
 
 
