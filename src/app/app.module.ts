@@ -1,21 +1,58 @@
+
+/**
+ * Modules
+ */
 import { NgModule } from '@angular/core';
 import {NgForm} from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-//import { AuthModule } from 'angular2-auth';
-import  {AboutComponent} from "./about/about.component";
-import { HomeComponent } from './home/home.component';
-import { LoginModalComponent } from './loginModal/loginModal.component';
-import { AppComponent } from './app.component';
-import { SignupComponent } from "./signup/signup.component";
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from "./login/login.component";
-import {SignupModalComponent} from "./signupModal/signupModal.component";
-import { SearchGameComponent } from "./searchGame/searchGame.component";
 import { Ng2CompleterModule } from "ng2-completer";
-import {LoginPageComponent} from './loginPage/loginPage.component'
+/**
+ * Providers
+ */
+
+// used to create fake backend
+import { fakeBackendProvider } from './helpers/index';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { BaseRequestOptions } from '@angular/http';
+
+
+// route
+import { RouterModule, Routes } from '@angular/router';
+// providers
+
+import { AuthGuard } from './guards/index';
+
+
+// home
+import { HomeComponent } from './home/home.component';
+
+// app
+import { AppComponent } from './app.component';
+//about
+import  {AboutComponent} from "./about/about.component";
+
+// signup
+import { SignupComponent} from "./signup/index";
+import {SignupModalComponent} from "./signupModal/signupModal.component";
 import {SignupPageComponent} from './signupPage/signupPage.component'
+
+
+// login
+
+import { LoginComponent,LoginService } from "./login/index";
+import {LoginPageComponent} from './loginPage/loginPage.component'
+import { LoginModalComponent } from './loginModal/loginModal.component';
+
+// search
+import { SearchGamesComponent,SearchGamesService } from "./searchGame/index";
+
+// alert
+import{AlertComponent,AlertService} from './alert/index'
+
+// model
+import {UserService,GameService} from './models/index'
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginPageComponent },
@@ -26,15 +63,32 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule,Ng2CompleterModule ,HttpModule,RouterModule.forRoot(appRoutes),FormsModule
+  imports: [BrowserModule,Ng2CompleterModule ,HttpModule,
+    RouterModule.forRoot(appRoutes),FormsModule
     ,ReactiveFormsModule],
   
-  declarations: [AppComponent,SignupComponent ,AboutComponent,
-    LoginComponent, HomeComponent, LoginModalComponent,
-    SignupComponent,SignupModalComponent,SearchGameComponent,LoginPageComponent,SignupPageComponent],
-  bootstrap: [AppComponent]
+  declarations: [AppComponent,AboutComponent,
+     HomeComponent,LoginComponent, LoginModalComponent,LoginPageComponent,
+   SignupComponent,SignupModalComponent,SignupPageComponent,
+   SearchGamesComponent,AlertComponent
+    ],  
 
+  providers :[
+    SearchGamesService,
+    LoginService,
+    AuthGuard,AlertService,
+    BaseRequestOptions ,
+    UserService,
+    GameService,
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions,
+    AlertService
+  ],
+
+  bootstrap: [AppComponent]
   
 })
+
 export class AppModule {}
 
