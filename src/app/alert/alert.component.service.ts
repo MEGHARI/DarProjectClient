@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class AlertService {
+export  class AlertService {
     private subject = new Subject<any>();
     private keepAfterNavigationChange = false;
 
@@ -32,8 +32,13 @@ export class AlertService {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         this.subject.next({ type: 'error', text: message });
     }
+    neutral(message: string, keepAfterNavigationChange = false){
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: ' ', text: message });
+    }
 
     getMessage(): Observable<any> {
         return this.subject.asObservable();
     }
+    
 }

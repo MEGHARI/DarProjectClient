@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
 import { AlertService} from '../alert/index';
 import {  LoginService} from "./loginService.component";
 import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
+import * as myGlobals from "../globals";
+
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    
+    styleUrls: ['./login.component.css'],    
 })
 export class LoginComponent implements OnInit {
-    model: any = {};
     loading = false;
-    returnUrl: string;
+
     public formGroupLogin: FormGroup;
     constructor(public formBuilder : FormBuilder, 
         private route: ActivatedRoute,
@@ -24,17 +24,25 @@ export class LoginComponent implements OnInit {
             mail :['',Validators.required],
             password :['',Validators.required]
         })
+        this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe(e => {
+          if(myGlobals.signupSuccess == true ){
+            this.alertService.success('Registration successful', true);
+            myGlobals.setSignupNeutral()
+            
+          }
+          
+        });
         // reset login status
         this.authenticationService.logout();
-        // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     }
     login(infLogin : any) {
         this.loading = true;
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    this.router.navigate(['home']);
                 },
                 error => {
                     this.alertService.error(error);

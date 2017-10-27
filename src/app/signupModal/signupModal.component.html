@@ -1,4 +1,6 @@
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog"
+[ngClass]="{'in': visibleAnimate}"
+[ngStyle]="{'display': visible ? 'block' : 'none'}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +8,7 @@
                 <h1>Inscription</h1>
             </div>
             <div class="modal-body">
-                <signup></signup>
+                <signup (onShowModal)="onHide($event)"></signup>
             </div>
         </div>
     </div>
