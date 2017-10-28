@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    /*min-height: 2000px;*/
+    padding-top: 70px;
+  }
+
+  .navbar-nav > li > a, .navbar-brand {
+    padding-top:12px !important; 
+    padding-bottom:0 !important;
+    height: 45px;
+}
+.navbar {min-height:45px !important;}
+.navbar-header form {
+  position: absolute;
+  right: 20px;
+  max-width: 250px;
+  display: inline;
+}
+
+button.navbar-toggle.pull-left {
+  margin-left: 15px;
+}
+@media only screen and (max-width:768px){
+  .form-inline .form-group .form-control {
+    display: initial;
+    width: 50%;
+  }
+}
+
+.navbar .input-group i{
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar .input-group .btn{
+  font-size: 11.4px;
+}
+
+@media (max-width: 991px) {
+  .navbar-header {
+      float: none;
+  }
+  .navbar-left,.navbar-right {
+      float: none !important;
+  }
+  .navbar-toggle {
+      display: block;
+  }
+  .navbar-collapse {
+      border-top: 1px solid transparent;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .navbar-fixed-top {
+      top: 0;
+      border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+      display: none!important;
+  }
+  .navbar-nav {
+      float: none!important;
+      margin-top: 7.5px;
+  }
+  .navbar-nav>li {
+      float: none;
+  }
+  .navbar-nav>li>a {
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .collapse.in{
+      display:block !important;
+  }
+  .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: rgba(0,0,0,0);
+    margin-top: 0;
+    padding-top: 8px;
+}
+.navbar-form {
+    padding: 10px 15px;
+    margin-top: 8px;
+    margin-right: -15px;
+    margin-bottom: 8px;
+    margin-left: -15px;
+    border-top: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 1px 0 rgba(255,255,255,.1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.1),0 0px 0 rgba(255,255,255,.1);
+}
+.navbar-form .input-group {
+  display: flex;
+  vertical-align: middle;
+}
+}
