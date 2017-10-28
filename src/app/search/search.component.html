@@ -6,19 +6,22 @@ infinite-scroll
 <div class="page">
     <h3>Résultat de la recherche :</h3>
     <div class="listGames">
-            <div class="game" (click)="alert(this)" style="cursor:pointer" *ngFor="let game of games">
+        <div *ngFor="let game of games">
+            <div class="game" (click)="alert(this)" style="cursor:pointer">
                     <div class="thumb">
-                        <img src="https://besthqwallpapers.com/Uploads/11-7-2017/16367/thumb-fifa-18-logo-2017-games-football-simulator.jpg">
+                        <img *ngIf="game.cover" src="http:{{game.cover.url}}">
+                        <img *ngIf="!game.cover" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
+                        
                     </div>
                     <div class="informations">
                         <div class="titleGame">{{game.name}}</div>
-                        <div class="description">{{game.summary}}</div>
-                        <span><b>Date release :</b> {{game.first_release_date}}</span>
+                        <div class="description">{{game.summary | truncate : 250 : true}}</div>
+                        <span><b>Date release :</b> {{game.first_release_date | date}}</span>
                     </div>
-                </div>
-                
-            <hr class="style-two" />
-        
+                   
+            </div>
+            <hr class="style-two" /> 
+        </div>      
     </div>
 
 </div>

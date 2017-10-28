@@ -56,6 +56,9 @@ import{AlertComponent,AlertService} from './alert/index'
 
 // model
 import {UserService,GameService} from './models/index'
+
+//Pipe
+import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginPageComponent },
@@ -76,7 +79,8 @@ const appRoutes: Routes = [
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,LoginPageComponent,
    SignupComponent,SignupModalComponent,SignupPageComponent,
-   SearchGamesComponent,AlertComponent, SearchComponent, TestComponent
+   SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
+   TruncatePipe
     ],
 
   providers :[

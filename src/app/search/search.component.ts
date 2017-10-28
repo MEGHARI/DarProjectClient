@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from './search-service.component'
+import { DataNode } from './DataNode'
 
 @Component({
     selector: 'search-list',
@@ -24,15 +25,17 @@ export class SearchComponent implements OnInit {
 
     traitement(data){
         console.log(data.games);
+        
         data.games.forEach(element => {
-            this.games.push(element);
+            //this.games.push(new DataNode(element.name,element.summary, ""));
+            this.games.push(element)
         });
     }
 
     onScroll () {
         console.log('scrolled!!')
         this.offset +=10;
-        this.searchService.doSomething("fifa",this.offset).subscribe(
+        this.searchService.doSomething("fifa 17",this.offset).subscribe(
             data => this.traitement(data.json()),
             error => console.log(error),
             () => console.log('aaa')
