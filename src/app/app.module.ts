@@ -38,15 +38,15 @@ import  {AboutComponent} from "./about/about.component";
 
 // signup
 import { SignupComponent} from "./signup/index";
-import {SignupModalComponent} from "./signupModal/signupModal.component";
-import {SignupPageComponent} from './signupPage/signupPage.component'
 
+//profile
+import { ProfileService, ProfileComponent } from "./profile/index";
 
 // login
 
 import { LoginComponent,LoginService } from "./login/index";
-import {LoginPageComponent} from './loginPage/loginPage.component'
-import { LoginModalComponent } from './loginModal/loginModal.component';
+import {LoginPageComponent} from './login/loginPage/loginPage.component'
+import { LoginModalComponent } from './login/loginModal/loginModal.component';
 
 // search
 import { SearchGamesComponent,SearchGamesService } from "./searchGame/index";
@@ -67,7 +67,8 @@ const appRoutes: Routes = [
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
    { path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
-   { path: 'signup', component: SignupPageComponent  }
+   { path: 'signup', component: SignupComponent  },
+   { path: 'profile', component: ProfileComponent  },
 ];
 
 @NgModule({
@@ -78,7 +79,7 @@ const appRoutes: Routes = [
   
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,LoginPageComponent,
-   SignupComponent,SignupModalComponent,SignupPageComponent,
+   SignupComponent,ProfileComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
    TruncatePipe
     ],
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
     BaseRequestOptions ,
     UserService,
     GameService,
+    ProfileService,
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,

@@ -27,6 +27,7 @@ export class SearchComponent implements OnInit {
         console.log(data.games);
         
         data.games.forEach(element => {
+            console.log(element);
             //this.games.push(new DataNode(element.name,element.summary, ""));
             this.games.push(element)
         });
