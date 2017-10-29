@@ -14,6 +14,7 @@ import "rxjs/add/operator/map"
     selector :"signup",
 })
 export class SignupComponent implements OnInit{
+    errorAlert: boolean = false;
     formGroupSignup : FormGroup;
     user: User;
     loading = false;
@@ -32,7 +33,6 @@ constructor(
         mail : ['',Validators.required],
         postalCode : ['',[Validators.required,Validators.pattern("[0-9]{5,5}")]],
         dateOfBirth :['',Validators.required],
-        image :[''],
         password:['',Validators.required],
         address:['',Validators.required],
         confirmPassword : ['',Validators.required]
@@ -59,10 +59,10 @@ signup(infSignup :any) {
         .subscribe(
             data => {
                 myGlobals.setSignupSuccess();
-                this.hiddenModal();
                 this.router.navigate(['/login']);    
             },
             error => {
+                this.errorAlert=true;
                 this.alertService.error(error);
                 this.loading = false;
             });
@@ -75,7 +75,7 @@ signup(infSignup :any) {
 
     clearDatasForm(){
         this.formGroupSignup.setValue({name: '', firstName:"",mail: '', address:"",postalCode: '',
-    dateOfBirth:"",password:'',image:'',confirmPassword:''});
+    dateOfBirth:"",password:'',confirmPassword:''});
     }
 
 }

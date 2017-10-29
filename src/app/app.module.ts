@@ -45,7 +45,6 @@ import { ProfileService, ProfileComponent } from "./profile/index";
 // login
 
 import { LoginComponent,LoginService } from "./login/index";
-import {LoginPageComponent} from './login/loginPage/loginPage.component'
 import { LoginModalComponent } from './login/loginModal/loginModal.component';
 
 // search
@@ -61,7 +60,7 @@ import {UserService,GameService} from './models/index'
 import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
-   { path: 'login', component: LoginPageComponent },
+   { path: 'login', component: LoginComponent },
    { path: 'search', component: SearchComponent },
    { path: 'test', component: TestComponent },
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -78,7 +77,7 @@ const appRoutes: Routes = [
     ,ReactiveFormsModule, InfiniteScrollModule],
   
   declarations: [AppComponent,AboutComponent,
-     HomeComponent,LoginComponent, LoginModalComponent,LoginPageComponent,
+     HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
    TruncatePipe

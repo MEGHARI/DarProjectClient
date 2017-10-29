@@ -12,7 +12,6 @@ import * as myGlobals from "../globals";
 })
 export class LoginComponent implements OnInit {
     loading = false;
-
     public formGroupLogin: FormGroup;
     constructor(public formBuilder : FormBuilder, 
         private route: ActivatedRoute,
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
         .subscribe(e => {
           if(myGlobals.signupSuccess == true ){
             this.alertService.success('Registration successful', true);
-            myGlobals.setSignupNeutral()
+            //myGlobals.setSignupNeutral()
             
           }
           
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
-                    this.router.navigate(['home']);
+                    this.router.navigate(['profile']);
                 },
                 error => {
                     this.alertService.error(error);
