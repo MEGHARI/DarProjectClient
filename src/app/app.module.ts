@@ -56,6 +56,9 @@ import{AlertComponent,AlertService} from './alert/index'
 // model
 import {UserService,GameService} from './models/index'
 
+// images
+import { ImageUploadModule } from "angular2-image-upload";
+
 //Pipe
 import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
@@ -74,7 +77,7 @@ const appRoutes: Routes = [
 
   imports: [BrowserModule,Ng2CompleterModule ,HttpModule,
     RouterModule.forRoot(appRoutes),FormsModule
-    ,ReactiveFormsModule, InfiniteScrollModule],
+    ,ReactiveFormsModule, InfiniteScrollModule,ImageUploadModule.forRoot()],
   
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,
