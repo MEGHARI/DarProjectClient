@@ -18,8 +18,6 @@ export class SignupComponent implements OnInit{
     formGroupSignup : FormGroup;
     user: User;
     loading = false;
-    @Output() onShowModal : EventEmitter<void>= new EventEmitter<void>();
-
 constructor(
     public formBuilderSignup : FormBuilder,
     private router: Router,
@@ -31,8 +29,6 @@ constructor(
         name : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         firstName : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         mail : ['',Validators.required],
-        postalCode : ['',[Validators.required,Validators.pattern("[0-9]{5,5}")]],
-        dateOfBirth :['',Validators.required],
         password:['',Validators.required],
         address:['',Validators.required],
         confirmPassword : ['',Validators.required]
@@ -45,37 +41,24 @@ constructor(
 }
 
 signup(infSignup :any) {
-    
     this.loading = true;
-    this.user = new User(
-        infSignup.name,
-        infSignup.firstName,
-        infSignup.address,
-        infSignup.dateOfBirth,
-        infSignup.postalCode,
-        infSignup.mail,
-        infSignup.password);
         this.userService.create(this.user)
         .subscribe(
-            data => {
+            data => {           
                 myGlobals.setSignupSuccess();
                 this.router.navigate(['/login']);    
             },
             error => {
+                console.log("whatever")
                 this.errorAlert=true;
-                this.alertService.error(error);
+                //this.alertService.error(error);
                 this.loading = false;
             });
 }
 
-    hiddenModal(){
-        this.clearDatasForm()
-        this.onShowModal.emit();
-    }
-
     clearDatasForm(){
-        this.formGroupSignup.setValue({name: '', firstName:"",mail: '', address:"",postalCode: '',
-    dateOfBirth:"",password:'',confirmPassword:''});
+        this.formGroupSignup.setValue({name: "", firstName:"",mail: "", address:"",
+    password:"",confirmPassword:""});
     }
 
 }

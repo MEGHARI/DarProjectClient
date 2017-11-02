@@ -27,9 +27,7 @@ export class LoginComponent implements OnInit {
         .filter(event => event instanceof NavigationEnd)
         .subscribe(e => {
           if(myGlobals.signupSuccess == true ){
-            this.alertService.success('Registration successful', true);
-            //myGlobals.setSignupNeutral()
-            
+            this.alertService.success('Inscription réussite', true);   
           }
           
         });
@@ -41,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
-                    this.router.navigate(['profile']);
+                    this.router.navigate(['/profile']);
                 },
                 error => {
                     this.alertService.error(error);

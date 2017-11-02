@@ -29,8 +29,6 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                             firstName: user.firstName,
                             lastName: user.lastName,
                             address : user.address,
-                            postalCode :user.postalCode,
-                            dateOfBirth : user.dateOfBirth,
                             token: 'fake-jwt-token'
                         }
                     }))
@@ -84,7 +82,6 @@ export function fakeBackendFactory(backend: MockBackend, options: BaseRequestOpt
                 
                 // validation
                 let duplicateUser = users.filter(user => { return user.mail === newUser.mail; }).length;
-                console.log(newUser.mail)
                 if (duplicateUser) {
                     return connection.mockError(new Error('Username "' + newUser.mail + '" is already taken'));
                 }
