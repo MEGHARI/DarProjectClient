@@ -4,6 +4,7 @@ body {
     padding-top: 70px;
   }
 
+
   .navbar-nav > li > a, .navbar-brand {
     padding-top:12px !important; 
     padding-bottom:0 !important;
@@ -92,3 +93,11 @@ button.navbar-toggle.pull-left {
   vertical-align: middle;
 }
 }
+
+.back { 
+    background-image:url('https://scontent-cdt1-1.xx.fbcdn.net/v/t35.0-12/23262011_1861911237456556_1132932537_o.jpg?oh=a1bdc325f1f45c398f77d47c68420cc0&oe=59FFC59B');
+    background-repeat: repeat;
+    min-height: 679px;
+}
+
+

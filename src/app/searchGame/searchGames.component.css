@@ -24,9 +24,7 @@
 
 .row{
     color: #555;
-    border: 1px solid rgb(202, 104, 104);
-    border-radius: 4px;
-    box-shadow: 0 0 20px grey;
+    width: 800px;
 }
 
 :host /deep/ .completer-input {
