@@ -59,6 +59,9 @@ import {UserService,GameService} from './models/index'
 // images
 import { ImageUploadModule } from "angular2-image-upload";
 
+//messages
+import {MessagesComponent,MessagesService} from "./messages/index"
+
 //Pipe
 import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
@@ -71,6 +74,7 @@ const appRoutes: Routes = [
    { path: 'home', component: HomeComponent },
    { path: 'signup', component: SignupComponent  },
    { path: 'profile', component: ProfileComponent  },
+   {path: 'messages', component: MessagesComponent }
 ];
 
 @NgModule({
@@ -83,7 +87,7 @@ const appRoutes: Routes = [
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
-   TruncatePipe
+   TruncatePipe,MessagesComponent
     ],
 
   providers :[
@@ -97,7 +101,8 @@ const appRoutes: Routes = [
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
-    AlertService
+    AlertService,
+    MessagesService
   ],
 
   bootstrap: [AppComponent]

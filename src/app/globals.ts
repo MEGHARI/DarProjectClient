@@ -1,11 +1,18 @@
 'use strict';
 import { Observable } from 'rxjs';
 import {AlertService} from "./alert/alert.component.service"
-export var signupSuccess : boolean ;
 
+
+// vars and consts
+export var signupSuccess : boolean ;
+export var  islogged : boolean = false;
+
+
+// functions
 export function setSignupSuccess(){
-signupSuccess = true;
+    signupSuccess = true;
 }
-export function setSignupNeutral(){
-    signupSuccess = false;
-    }
+export function setLogged(log : boolean){
+    islogged = log; 
+}
+

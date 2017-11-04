@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Output,EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
 import { AlertService} from '../alert/index';
 import {  LoginService} from "./loginService.component";
 import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
 import * as myGlobals from "../globals";
-
+import {AppComponent} from "../app.component"
+declare var jQuery : any;
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
@@ -39,6 +40,8 @@ export class LoginComponent implements OnInit {
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
+                    myGlobals.setLogged(true);
+                    jQuery("#loginModal").modal("hide");
                     this.router.navigate(['/profile']);
                 },
                 error => {
@@ -46,4 +49,5 @@ export class LoginComponent implements OnInit {
                     this.loading = false;
                 });
     }
+
 }

@@ -15,8 +15,8 @@ constructor(private http:Http) { }
         return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
-    create(user: Object) {
-        return this.http.post('/api/users',user,this.jwt()).map((response: Response) => response.json());
+    create(user:Object) {
+        return this.http.post('/api/users',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
         
     }
 

@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit{
     formGroupSignup : FormGroup;
     user: User;
     loading = false;
+
 constructor(
     public formBuilderSignup : FormBuilder,
     private router: Router,
@@ -42,7 +43,7 @@ constructor(
 
 signup(infSignup :any) {
     this.loading = true;
-        this.userService.create(this.user)
+        this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,addresse : infSignup.address,password : infSignup.password}))
         .subscribe(
             data => {           
                 myGlobals.setSignupSuccess();
