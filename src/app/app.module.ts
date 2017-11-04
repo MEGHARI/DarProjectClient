@@ -64,6 +64,9 @@ import {MessagesComponent,MessagesService} from "./messages/index"
 
 // myGames
 import {MyGamesComponent,MyGameService} from "./myGames/index"
+
+// history
+import {HistoryComponent,HistoryService} from "./history/index"
 //Pipe
 import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
@@ -74,10 +77,12 @@ const appRoutes: Routes = [
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
    { path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
+   {path :'about',component:AboutComponent},
    { path: 'signup', component: SignupComponent  },
    { path: 'profile', component: ProfileComponent  },
    {path: 'messages', component: MessagesComponent },
-   {path: 'myGames', component: MyGamesComponent }
+   {path: 'myGames', component: MyGamesComponent },
+   {path: 'history', component: HistoryComponent}
 ];
 
 @NgModule({
@@ -90,7 +95,7 @@ const appRoutes: Routes = [
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
-   TruncatePipe,MessagesComponent,MyGamesComponent
+   TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent
     ],
 
   providers :[
@@ -106,7 +111,8 @@ const appRoutes: Routes = [
     BaseRequestOptions,
     AlertService,
     MessagesService,
-    MyGameService
+    MyGameService,
+    HistoryService
   ],
 
   bootstrap: [AppComponent]
