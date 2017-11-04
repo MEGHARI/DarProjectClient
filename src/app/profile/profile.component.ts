@@ -5,8 +5,8 @@ import { ProfileService } from './profileService.component'
     selector: 'profile',
     providers: [ProfileService],
     templateUrl: './profile.component.html',
-    styleUrls: ['./css/profile.component.css', './css/style.css',
-    './css/spinners.css', './css/animate.css']
+    styleUrls: ['../../assets/css2/profile.component.css', '../../assets/css2/style.css',
+    '../../assets/css2/spinners.css', '../../assets/css2/animate.css']
 })
 export class ProfileComponent implements OnInit {
     constructor(private ProfileService : ProfileService) { }

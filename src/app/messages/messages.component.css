@@ -146,6 +146,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   width: 100%;
+  box-sizing: border-box;
 }
 .chat_area li {
   padding: 14px 14px 0;
