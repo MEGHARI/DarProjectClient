@@ -1,3 +1,4 @@
+
 .navbar-static-top {
     margin-bottom:20px;
   }
@@ -7,14 +8,14 @@
   }
   
   .nav > li > a {
-    color:#787878;
+    color:#DBD8D8;
   }
     
   footer {
     margin-top:20px;
     padding-top:20px;
     padding-bottom:20px;
-    background-color:#efefef;
+    background-color:#080808;
   }
   
   /* count indicator near icons */
@@ -23,8 +24,8 @@
     bottom: 12px;
     right: 6px;
     font-size: 9px;
-    background: rgba(51,200,51,0.55);
-    color: rgba(255,255,255,0.9);
+    background: rgba(0, 0, 0, 0.55);
+    color: rgba(12, 12, 12, 0.9);
     line-height: 1em;
     padding: 2px 4px;
     -webkit-border-radius: 10px;

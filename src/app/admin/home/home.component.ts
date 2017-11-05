@@ -4,18 +4,17 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
     selector: 'home',
-    providers: [HomeService],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeAdminComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         //this.document.body.classList.remove('back');
     }
-    constructor(private homeService: HomeService, @Inject(DOCUMENT) private document: Document ) {}
+    constructor() {}
 
     ngOnInit() {
-        //this.document.body.classList.add('back');
+        
     }
 
 }

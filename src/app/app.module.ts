@@ -7,9 +7,11 @@ import {NgForm} from "@angular/forms"
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import {AdminModule} from "./admin/admin.module"
 //import { AuthModule } from 'angular2-auth';
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { Ng2CompleterModule } from "ng2-completer";
+
 /**
  * Providers
  */
@@ -70,6 +72,7 @@ import {MyGamesComponent,MyGameService} from "./myGames/index"
 import {HistoryComponent,HistoryService} from "./history/index"
 //Pipe
 import {TruncatePipe} from './pipes/truncate'
+
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginComponent },
@@ -83,20 +86,21 @@ const appRoutes: Routes = [
    { path: 'profile', component: ProfileComponent  },
    {path: 'messages', component: MessagesComponent },
    {path: 'myGames', component: MyGamesComponent },
-   {path: 'history', component: HistoryComponent}
+   {path: 'history', component: HistoryComponent},
+
 ];
 
 @NgModule({
 
   imports: [BrowserModule,Ng2CompleterModule ,HttpModule,
     RouterModule.forRoot(appRoutes),FormsModule
-    ,ReactiveFormsModule, InfiniteScrollModule,ImageUploadModule.forRoot()],
+    ,ReactiveFormsModule, InfiniteScrollModule,ImageUploadModule.forRoot(),AdminModule],
   
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,NavbarComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
-   TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent
+   TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent,
     ],
 
   providers :[
@@ -115,7 +119,7 @@ const appRoutes: Routes = [
     MyGameService,
     HistoryService
   ],
-
+  exports:[],
   bootstrap: [AppComponent]
   
 })
