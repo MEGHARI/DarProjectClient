@@ -13,7 +13,8 @@ import { Ng2CompleterModule } from "ng2-completer";
 /**
  * Providers
  */
-
+// navbar
+import {NavbarComponent} from "./navbar/navbar.component"
 // used to create fake backend
 import { fakeBackendProvider } from './helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
@@ -93,7 +94,7 @@ const appRoutes: Routes = [
   
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,
-   SignupComponent,ProfileComponent,
+   SignupComponent,ProfileComponent,NavbarComponent,
    SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
    TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent
     ],
