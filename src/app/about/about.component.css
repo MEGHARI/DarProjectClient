@@ -10,3 +10,12 @@ h2 {
   margin-bottom: 0;
   margin-top: 0.83em;
 }
+.jumbotron {
+  background: rgb(231, 221, 221); /* This is for ie8 and below */
+  background: rgba(231, 219, 219, 0.5); 
+}
+.jumbotron p {
+  margin-bottom: 15px;
+  font-size: 32px;
+  font-weight: 200;
+}
