@@ -1,0 +1,34 @@
+  .dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+ .dropdown ul a:hover {
+    color : blue;
+  }
+
+  .navbar-default {
+    background-color: #69899f;
+    border-color: #425766;
+  }
+
+  .navbar-default .navbar-nav > li > .dropdown-menu {
+    background-color: #69899f;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #d7e2e9;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: #e5dbdb;
+    background-color: #425766;
+  }
+  .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+    background-color: #69899f;
+  }
+  
+ 
+ 
+ 
