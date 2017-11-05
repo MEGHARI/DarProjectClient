@@ -60,3 +60,11 @@ hr.style-two {
     font-size: 14px;
 }
 
+.full-width{
+    float:left;width:100%;margin-top:30px;min-height:500px;position:relative;
+}
+
+.bg-transparent{
+    background: rgb(243, 234, 234) ;float: left;
+    width: 100%;margin-top: 0px;
+}
