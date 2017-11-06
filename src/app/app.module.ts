@@ -99,14 +99,14 @@ const appRoutes: Routes = [
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,NavbarComponent,
-   SearchGamesComponent,AlertComponent, SearchComponent, TestComponent,
+   SearchGamesComponent,SearchComponent, TestComponent,
    TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent,
     ],
 
   providers :[
     SearchGamesService,
     LoginService,
-    AuthGuard,AlertService,
+    AuthGuard,
     BaseRequestOptions ,
     UserService,
     GameService,
@@ -114,7 +114,6 @@ const appRoutes: Routes = [
     fakeBackendProvider,
     MockBackend,
     BaseRequestOptions,
-    AlertService,
     MessagesService,
     MyGameService,
     HistoryService
