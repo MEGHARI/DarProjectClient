@@ -11,22 +11,25 @@ import {LoginAdminComponent,LoginAdminService} from "./login/index"
 import{AlertComponent,AlertService} from '../alert/index'
 import {GamesAdminComponent} from "./games/index"
 import {UsersAdminComponent} from "./users/index"
-
+import {StaticticsComponent,StaticticsService} from"./statistics/index"
 const appRoutes: Routes = [
-    { path:"admin/home",component:HomeAdminComponent },
+    { path:"admin/:idAdmin/home",component:HomeAdminComponent },
     { path:"admin/login",component:LoginAdminComponent },
-    { path:"admin/games",component:GamesAdminComponent},
-    { path:"admin/users",component:UsersAdminComponent}
+    { path:"admin/:idAdmin/games",component:GamesAdminComponent},
+    { path:"admin/:idAdmin/users",component:UsersAdminComponent},
+    { path:"admin/:idAdmin/users/:idUser/games",component:GamesAdminComponent},
+    { path:"admin/:idAdmin/games/:idGame/users",component:UsersAdminComponent},
+    { path:"admin/:idAdmin/statistics",component:StaticticsComponent}
 ]
 @NgModule({
     declarations: [NavbarAdminComponent,HomeAdminComponent,LoginAdminComponent,AlertComponent,
-        GamesAdminComponent,UsersAdminComponent],
+        GamesAdminComponent,UsersAdminComponent,StaticticsComponent],
 
     imports: [ CommonModule,RouterModule.forRoot(appRoutes),BrowserModule,HttpModule,FormsModule
         ,ReactiveFormsModule ],
 
     exports: [NavbarAdminComponent,HomeAdminComponent,LoginAdminComponent,AlertComponent,
-        UsersAdminComponent],
-    providers: [HomeService,LoginAdminService ,AlertService]
+        UsersAdminComponent,StaticticsComponent],
+    providers: [HomeService,LoginAdminService ,AlertService,StaticticsService]
 })
 export class AdminModule {}

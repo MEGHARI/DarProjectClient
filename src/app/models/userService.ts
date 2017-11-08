@@ -6,7 +6,9 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 constructor(private http:Http) { }
-
+    print(){
+        console.log("je suis le meileur")
+    }
     getAll() {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }

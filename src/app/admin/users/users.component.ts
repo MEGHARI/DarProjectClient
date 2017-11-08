@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Router,ActivatedRoute } from '@angular/router';
+import {UserService} from "../../models/userService"
 declare var $:any;
 @Component({
     selector: 'users',
@@ -6,9 +9,33 @@ declare var $:any;
     styleUrls: ['./users.component.css']
 })
 export class UsersAdminComponent implements OnInit {
-    constructor() { }
+    idAdmin: number;//curent admin.id
+    idGame: number;
+    constructor(private activatedRoute: ActivatedRoute,private router : Router,private userService :UserService) {
+       if(this.router.url.match("/admin/[0-9]+/users")){
+        this.activatedRoute.params.subscribe(params => {
+            this.idAdmin = +params['idAdmin']; // (+) converts string 'id' to a number
+            console.log(this.idAdmin)
+     
+         });
+       }else if(this.router.url.match("/admin/[0-9]+/games/[0-9]+/users")){
+        this.activatedRoute.params.subscribe(params => {
+            this.idAdmin = +params['idAdmin']; // (+) converts string 'id' to a number
+            this.idGame = +params['idGame']
+            console.log(this.idAdmin+"   "+this.idGame)
+     
+         });
+       }else{
+           this.router.navigate(['/admin/home'])
+       }
+
+      }
+    
 
     ngOnInit() { 
+       this.animate()
+    }
+    animate(){
         $(document).ready(function() {
             var panels = $('.user-infos');
             var panelsButton = $('.dropdown-user');
@@ -37,11 +64,6 @@ export class UsersAdminComponent implements OnInit {
         
         
             $('[data-toggle="tooltip"]').tooltip();
-        
-            $('button').click(function(e) {
-                e.preventDefault();
-                alert("This is a demo.\n :-)");
-            });
         });
     }
 }
