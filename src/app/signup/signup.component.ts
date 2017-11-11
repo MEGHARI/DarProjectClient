@@ -6,7 +6,6 @@ import * as myGlobals from "../globals";
 import {User} from '../models/index';
 import {AlertService} from '../alert/index';
 import {UserService} from '../models/index';
-import "rxjs/add/operator/map"
 @Component({
 
     templateUrl:"signup.component.html",
@@ -43,7 +42,7 @@ constructor(
 
 signup(infSignup :any) {
     this.loading = true;
-        this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,addresse : infSignup.address,password : infSignup.password}))
+        this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address : infSignup.address,password : infSignup.password}))
         .subscribe(
             data => {           
                 myGlobals.setSignupSuccess();
@@ -52,9 +51,10 @@ signup(infSignup :any) {
             error => {
                 console.log("whatever")
                 this.errorAlert=true;
-                //this.alertService.error(error);
+                this.alertService.error(error);
                 this.loading = false;
             });
+                
 }
 
     clearDatasForm(){

@@ -5,6 +5,7 @@ import {  LoginService} from "./loginService.component";
 import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
 import * as myGlobals from "../globals";
 import {AppComponent} from "../app.component"
+import { User } from "../models/user";
 declare var jQuery : any;
 @Component({
     selector: 'login',
@@ -13,6 +14,7 @@ declare var jQuery : any;
 })
 export class LoginComponent implements OnInit {
     loading = false;
+    user : User;
     public formGroupLogin: FormGroup;
     constructor(public formBuilder : FormBuilder, 
         private route: ActivatedRoute,
@@ -32,22 +34,23 @@ export class LoginComponent implements OnInit {
           }
           
         });
-        // reset login status
-        this.authenticationService.logout();
     }
     login(infLogin : any) {
+        
         this.loading = true;
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
                     myGlobals.setLogged(true);
                     jQuery("#loginModal").modal("hide");
-                    this.router.navigate(['/profile']);
+                    this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);
+                   
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error(error.json().errors[0]["message"]);
                     this.loading = false;
                 });
     }
+    
 
 }

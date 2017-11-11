@@ -1,3 +1,4 @@
+<navbar [isLogged]="false"></navbar>
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
     <div class="full-width bg-transparent">
         <div class="page">
@@ -6,15 +7,19 @@
                 <div *ngFor="let game of games">
                     <div class="game" (click)="alert(this)" style="cursor:pointer">
                         <div class="thumb">
-                            <img *ngIf="game.cover" src="http:{{game.cover.url}}">
-                            <img *ngIf="!game.cover" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
+                            <img *ngIf="game.image" src="http:{{game.image.url}}">
+                            <img *ngIf="!game.image" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
                         </div>
                         <div class="informations">
-                            <div class="titleGame">{{game.name}}</div>
-                            <div class="description">{{game.summary | truncate : 250 : true}}</div>
-                            <span>
-                                <b>Date release :</b> {{game.first_release_date | date}}
-                            </span>
+                            <div class="titleGame">{{game.title}}</div>
+                            <div class="description">{{game.overview | truncate : 250 : true}}</div>
+                            <div>
+                                <b>Date release :</b> {{game.dateRelease | date}}
+                            </div>
+                            <button type="button" (click)="dynamicModal(game.id, game.title)" class="btn btn-success"
+                            data-toggle="modal" data-target="#modalDescription">Success</button>
+                            <button type="button" class="btn btn-success" 
+                            data-toggle="modal" data-target="#modalDescription">Success</button>
                         </div>
                     </div>
                     <hr class="style-two" />
@@ -22,5 +27,24 @@
             </div>
 
         </div>
+    </div>
+</div>
+
+<!-- Modal Description Game  -->
+<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+          <button type="button" id="confirm" (click)="confirm(id)" class="btn btn-primary">Oui</button>
+        </div>
+      </div>
     </div>
 </div>

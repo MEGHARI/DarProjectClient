@@ -1,46 +1,73 @@
-import { Component, OnInit } from '@angular/core';
-import { SearchService } from './search-service.component'
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { DataNode } from './DataNode'
+import {  GameService } from "../models/gameService";
+import {Game} from "../models/game"
+import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
+declare var $:any;
 
 @Component({
     selector: 'search-list',
-    providers: [SearchService],
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
+    private router : Router;
     games = [];
     offset = 0;
-    constructor(private searchService : SearchService) { }
+    name : string;
+    public id:number;
+    constructor(private gameservice : GameService,private activatedRoute : ActivatedRoute,
+        private elRef:ElementRef) { }
 
     ngOnInit() { 
-        this.searchService.doSomething("fifa",this.offset).subscribe(
-            data => this.traitement(data.json()),
+        this.activatedRoute.params.subscribe(params => this.name= params["name"]);
+        this.gameservice.searchGame(this.name,this.offset).subscribe(
+            data => this.traitement(data["games"]),
             error => console.log(error),
-            () => console.log('aaa')
         );
     }
 
 
     traitement(data){
-        console.log(data.games);
+        console.log(data);
         
-        data.games.forEach(element => {
-            console.log(element);
+       data.forEach(element => {
+        console.log(element)
+            this.games.push(new Game(element["id"],element["name"],element["summary"],
+            element["first_release_date"],element["platform"],element["cover"]))
+            
             //this.games.push(new DataNode(element.name,element.summary, ""));
-            this.games.push(element)
+            //this.games.push(element)
         });
+
+        console.log(this.games);
     }
 
     onScroll () {
         console.log('scrolled!!')
         this.offset +=10;
-        this.searchService.doSomething("fifa 17",this.offset).subscribe(
-            data => this.traitement(data.json()),
+        this.gameservice.searchGame(this.name,this.offset).subscribe(
+            data => this.traitement(data["games"]),
             error => console.log(error),
             () => console.log('aaa')
         );
         console.log();
+    }
+
+    dynamicModal(id:number,name:string){
+        console.log(id)
+        this.id=id;
+        $('#modalDescription').on('show.bs.modal', function(e) {
+            $('#modalDescription .modal-header #myModalLabel').html(name);
+            $('#modalDescription .modal-body').html("Voulez vous ajouter le jeu "+
+            "<b>"+name+"</b>");
+            //this.id = id;
+            //this.elRef.nativeElement.querySelector('#confirm').addEventHandler('click', this.onClick.bind(this));
+        });
+    }
+
+    confirm(){
+        console.log(this.id);
+        $("#modalDescription").modal("hide");
     }
 }

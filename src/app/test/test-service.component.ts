@@ -17,7 +17,7 @@ export class TestService {
     //headers.append('user-key', 'dc7f9da90462dd90d9594bf3e2664d51');
     //let options = new RequestOptions({headers: headers});
     //this.createAuthorizationHeader(myHeaders);
-    return this.http.get('http://localhost:8080/DarProject/testsearch?title='+search+
+    return this.http.get('http://localhost:8080/DarProject/testsearch?title=fifa'+
     '&offset='+offset);
   }
 }

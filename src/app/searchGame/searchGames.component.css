@@ -42,7 +42,7 @@
 }
 
 :host >>> .completer-row
-{ display: inherit; background:blue; }
+{ display: inherit; }
 
 :host >>> .completer-selected-row {
     background-color: lightblue;

@@ -17,10 +17,6 @@ import { Ng2CompleterModule } from "ng2-completer";
  */
 // navbar
 import {NavbarComponent} from "./navbar/navbar.component"
-// used to create fake backend
-import { fakeBackendProvider } from './helpers/index';
-import { MockBackend, MockConnection } from '@angular/http/testing';
-import { BaseRequestOptions } from '@angular/http';
 
 
 // route
@@ -51,7 +47,7 @@ import { LoginComponent,LoginService } from "./login/index";
 import { LoginModalComponent } from './login/loginModal/loginModal.component';
 
 // search
-import { SearchGamesComponent,SearchGamesService } from "./searchGame/index";
+import { SearchGamesComponent } from "./searchGame/index";
 
 // alert
 import{AlertComponent,AlertService} from './alert/index'
@@ -76,17 +72,17 @@ import {TruncatePipe} from './pipes/truncate'
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
    { path: 'login', component: LoginComponent },
-   { path: 'search', component: SearchComponent },
+   { path: 'search/:name', component: SearchComponent },
    { path: 'test', component: TestComponent },
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
    { path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
    {path :'about',component:AboutComponent},
    { path: 'signup', component: SignupComponent  },
-   { path: 'profile', component: ProfileComponent  },
-   {path: 'messages', component: MessagesComponent },
-   {path: 'myGames', component: MyGamesComponent },
-   {path: 'history', component: HistoryComponent},
+   { path: 'users/:id/profile', component: ProfileComponent  },
+   {path: 'users/:id/messages', component: MessagesComponent },
+   {path: 'users/:id/games', component: MyGamesComponent },
+   {path: 'users/:id/history', component: HistoryComponent},
 
 ];
 
@@ -104,16 +100,11 @@ const appRoutes: Routes = [
     ],
 
   providers :[
-    SearchGamesService,
     LoginService,
     AuthGuard,
-    BaseRequestOptions ,
     UserService,
     GameService,
     ProfileService,
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions,
     MessagesService,
     MyGameService,
     HistoryService

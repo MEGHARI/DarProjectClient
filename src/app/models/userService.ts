@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-
+import * as myGlobals from "../globals"
 import { User } from './user';
+import {Observable} from 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
 constructor(private http:Http) { }
-    print(){
-        console.log("je suis le meileur")
-    }
     getAll() {
         return this.http.get('/api/users', this.jwt()).map((response: Response) => response.json());
     }
@@ -18,10 +16,8 @@ constructor(private http:Http) { }
     }
 
     create(user:Object) {
-        return this.http.post('/api/users',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
-        
+        return this.http.post(myGlobals.url+'user/register',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
-
     update(user: User) {
         return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }
@@ -39,5 +35,6 @@ constructor(private http:Http) { }
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
             return new RequestOptions({ headers: headers });
         }
+        return new RequestOptions();
     }
 }

@@ -3,7 +3,7 @@
 <div class="global">
   <div class="row main">
     <div class="main-login main-center">
-      <form (ngSubmit)="signup(formGroupSignup.value)" [formGroup]="formGroupSignup">
+      <form [formGroup] ="formGroupSignup">
         
           <div class="form-group has-feedback " [ngClass]="{'has-error':!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0,'has-success':formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0}">
               <label for="name" class="cols-sm-2 control-label">Nom :</label>

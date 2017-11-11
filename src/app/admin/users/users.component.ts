@@ -15,7 +15,6 @@ export class UsersAdminComponent implements OnInit {
        if(this.router.url.match("/admin/[0-9]+/users")){
         this.activatedRoute.params.subscribe(params => {
             this.idAdmin = +params['idAdmin']; // (+) converts string 'id' to a number
-            console.log(this.idAdmin)
      
          });
        }else if(this.router.url.match("/admin/[0-9]+/games/[0-9]+/users")){

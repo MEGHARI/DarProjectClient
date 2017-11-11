@@ -6,10 +6,9 @@ export class User {
         public firstName : string,
         public address : string,
         public mail : string,
-        public password : string, 
-        public bann : boolean,
         public id : number,
-        public role : string,   
+        public status : number,
+        public token : string   
         
     ){
         
