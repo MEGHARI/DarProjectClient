@@ -43,10 +43,12 @@ export class LoginComponent implements OnInit {
                 data => {
                     myGlobals.setLogged(true);
                     jQuery("#loginModal").modal("hide");
+                    console.log(JSON.parse(localStorage.getItem("currentUser"))["id"])
                     this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);
-                   
+                    console.log(data)
                 },
                 error => {
+                    console.log("erreur"+error.json())
                     this.alertService.error(error.json().errors[0]["message"]);
                     this.loading = false;
                 });

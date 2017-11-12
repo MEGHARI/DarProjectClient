@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
     private router : Router;
     games = [];
     offset = 0;
-    name : string;
+    public name : string;
     public id:number;
     constructor(private gameservice : GameService,private activatedRoute : ActivatedRoute,
         private elRef:ElementRef) { }
@@ -60,9 +60,7 @@ export class SearchComponent implements OnInit {
         $('#modalDescription').on('show.bs.modal', function(e) {
             $('#modalDescription .modal-header #myModalLabel').html(name);
             $('#modalDescription .modal-body').html("Voulez vous ajouter le jeu "+
-            "<b>"+name+"</b>");
-            //this.id = id;
-            //this.elRef.nativeElement.querySelector('#confirm').addEventHandler('click', this.onClick.bind(this));
+            "<b>"+name+"</b> à votre liste de jeux possédés ?");
         });
     }
 

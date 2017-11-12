@@ -21,7 +21,7 @@ export class GameService {
         
     }
     autoSearchGames(name: String,){
-        return this.http.get(myGlobals.url+"game/autosearch?title="+name).map((response: Response) => response.json());      
+        return this.http.get(myGlobals.url+"game/autoCompleteSearch?title="+name).map((response: Response) => response.json());      
     }
 
     getGamesByUser(id: number) {
