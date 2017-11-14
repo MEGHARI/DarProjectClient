@@ -1,4 +1,4 @@
-<navbar [isLogged]="false"></navbar>
+<navbar> </navbar>
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="onScroll()">
     <div class="full-width bg-transparent">
         <div class="page">
@@ -7,7 +7,7 @@
                 <div *ngFor="let game of games">
                     <div class="game" (click)="alert(this)" style="cursor:pointer">
                         <div class="thumb">
-                            <img *ngIf="game.image" src="http:{{game.image.url}}">
+                             <img *ngIf="game.image" src="http:{{game.image.url}}">
                             <img *ngIf="!game.image" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
                         </div>
                         <div class="informations">
@@ -16,17 +16,19 @@
                             <div>
                                 <b>Date release :</b> {{game.dateRelease | date}}
                             </div>
-                            <button type="button" (click)="dynamicModal(game.id, game.title)" class="btn btn-success"
+                            <button *ngIf="user" type="button" (click)="dynamicModal(game.id, game.title)" class="btn btn-success"
                             data-toggle="modal" data-target="#modalDescription">Ajouter</button>
-                            <button type="button" class="btn btn-danger" 
+                            <button *ngIf="user" type="button" class="btn btn-danger" 
                             data-toggle="modal" data-target="#modalDescription">Retirer</button>
+                            <button *ngIf="user" type="button" class="btn btn-primary" 
+                            data-toggle="modal" data-target="#modalDescription">Demander</button>
                         </div>
                     </div>
                     <hr class="style-two" />
                 </div>
             </div>
 
-        </div>
+        </div>  
     </div>
 </div>
 
@@ -38,7 +40,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id ="content-body">
             
         </div>
         <div class="modal-footer">

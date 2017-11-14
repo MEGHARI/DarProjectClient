@@ -1,5 +1,5 @@
 <navbar-admin></navbar-admin>
-<div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+<div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" *ngFor="let user of users">
         <div class="row user-row">
             <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
                 <img class="img-circle"
@@ -7,10 +7,10 @@
                      alt="User Pic">
             </div>
             <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
-                <strong>Salim smail</strong><br>
+                <strong>{{user.lastName}} {{user.firstName}}</strong><br>
             </div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
-                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-usr " data-for=".cyruxx">
+                <i class="glyphicon glyphicon-chevron-down text-muted" (click)="animate(user.id)"></i>
             </div>
         </div>
         <div class="row user-infos cyruxx">
@@ -36,28 +36,31 @@
                                     <tbody>
                                     <tr>
                                         <td>Nom</td>
-                                        <td>Smail</td>
+                                        <td>{{user.lastName}}</td>
                                     </tr>
                                     <tr>
                                         <td>Prénom</td>
-                                        <td>Salim</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date d'enregistrement:</td>
-                                        <td>11/12/2013</td>
+                                        <td>{{user.firstName}}</td>
                                     </tr>
                                     <tr>
                                         <td>couriel:</td>
-                                        <td>salim.upmc.fr</td>
+                                        <td>{{user.mail}}</td>
                                     </tr>
                                     <tr>
-                                        <td>nombre d'echanges :</td>
-                                        <td>0</td>
+                                        <td>addresse postale:</td>
+                                        <td>{{user.address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>status</td>
+                                        <td *ngIf="user.status == 1">actif</td>
+                                        <td *ngIf="user.status == 0">non confirmé</td>
+                                        <td *ngIf="user.status == -1">bannis</td>
                                     </tr>
                                     <tr>
                                         <td>listes des jeux:</td>
-                                        <td><a> clickez ici</a></td>
+                                        <td><a > clickez ici</a></td>
                                     </tr>
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -65,18 +68,64 @@
                     </div>
                     <div class="panel-footer">
                         <button class="btn btn-sm btn-primary" type="button"
-                                data-toggle="tooltip"
-                                data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                        data-toggle="tooltip" data-placement="top" title="envoyer un message" (click)="sendMessage(user)" 
+                        data-toggle="modal" data-target="#modalMessage">
+                        <i class="glyphicon glyphicon-envelope" ></i></button>
                         <span class="pull-right">
-                            <button class="btn btn-sm btn-warning" type="button"
-                                    data-toggle="tooltip"
-                                    data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i></button>
-                            <button class="btn btn-sm btn-danger" type="button"
-                                    data-toggle="tooltip"
-                                    data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button *ngIf="user.status==1"class="btn btn-sm btn-danger" type="button"
+                            data-toggle="tooltip" data-placement="top" title="banir l'utilisateur" 
+                            (click)="bann(user)"
+                            data-toggle="modal" data-target="#modalBanned">
+                            <i class="glyphicon glyphicon-remove"></i></button>
+                            <button *ngIf="user.status==-1"class="btn btn-sm btn-success" type="button"
+                            data-toggle="tooltip" data-placement="top" title="remetre l'utilisateur" 
+                            (click)="unbann(user)"
+                            data-toggle="modal" data-target="#modalBanned">
+                            <i class="glyphicon glyphicon-ok"></i></button>
                         </span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Message</h4>
+            </div>
+            <div class="modal-body" id ="content-body">
+                    <form class="form-horizontal" role="form" [formGroup]="formGroupMessage">
+                            <textarea class="form-control" class="form-control" formControlName="textMessage" rows="3"></textarea>
+                            <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <button type="button" id="confirm"  class="btn btn-primary" 
+                                    (click)="send(formGroupMessage.value)" [disabled]="!formGroupMessage.valid">envoyer</button>
+                            </div>
+                    </form>
+               
+            </div>
+            
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalBanned" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">information</h4>
+            </div>
+            <div class="modal-body" id ="content-body">
+                
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+              <button type="button" id="confirm" (click)="confirm()" class="btn btn-primary">Oui</button>
+            </div>
+          </div>
         </div>
     </div>

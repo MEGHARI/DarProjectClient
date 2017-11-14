@@ -59,7 +59,7 @@ import {UserService,GameService} from './models/index'
 import { ImageUploadModule } from "angular2-image-upload";
 
 //messages
-import {MessagesComponent,MessagesService} from "./messages/index"
+import {MessagesComponent} from "./messages/index"
 
 // myGames
 import {MyGamesComponent,MyGameService} from "./myGames/index"
@@ -105,7 +105,6 @@ const appRoutes: Routes = [
     UserService,
     GameService,
     ProfileService,
-    MessagesService,
     MyGameService,
     HistoryService
   ],

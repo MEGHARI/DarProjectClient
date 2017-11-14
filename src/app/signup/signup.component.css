@@ -119,3 +119,6 @@ span.input-group-addon i {
     display: block;
     width: 100%;
 }
+.control-label{
+    color: black;
+}

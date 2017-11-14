@@ -3,6 +3,7 @@ import { DataNode } from './DataNode'
 import {  GameService } from "../models/gameService";
 import {Game} from "../models/game"
 import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
+import {User} from "../models/user"
 declare var $:any;
 
 @Component({
@@ -14,14 +15,16 @@ export class SearchComponent implements OnInit {
     private router : Router;
     games = [];
     offset = 0;
+    public user : User;
     public name : string;
     public id:number;
-    constructor(private gameservice : GameService,private activatedRoute : ActivatedRoute,
+    constructor(private gameService : GameService,private activatedRoute : ActivatedRoute,
         private elRef:ElementRef) { }
 
     ngOnInit() { 
+        this.setUser()
         this.activatedRoute.params.subscribe(params => this.name= params["name"]);
-        this.gameservice.searchGame(this.name,this.offset).subscribe(
+        this.gameService.searchGame(this.name,this.offset).subscribe(
             data => this.traitement(data["games"]),
             error => console.log(error),
         );
@@ -35,27 +38,20 @@ export class SearchComponent implements OnInit {
         console.log(element)
             this.games.push(new Game(element["id"],element["name"],element["summary"],
             element["first_release_date"],element["platform"],element["cover"]))
-            
-            //this.games.push(new DataNode(element.name,element.summary, ""));
-            //this.games.push(element)
         });
 
         console.log(this.games);
     }
 
     onScroll () {
-        console.log('scrolled!!')
         this.offset +=10;
-        this.gameservice.searchGame(this.name,this.offset).subscribe(
+        this.gameService.searchGame(this.name,this.offset).subscribe(
             data => this.traitement(data["games"]),
             error => console.log(error),
-            () => console.log('aaa')
         );
-        console.log();
     }
 
     dynamicModal(id:number,name:string){
-        console.log(id)
         this.id=id;
         $('#modalDescription').on('show.bs.modal', function(e) {
             $('#modalDescription .modal-header #myModalLabel').html(name);
@@ -65,7 +61,17 @@ export class SearchComponent implements OnInit {
     }
 
     confirm(){
-        console.log(this.id);
         $("#modalDescription").modal("hide");
     }
+    setUser(){
+        if(localStorage.getItem("currentUser") === null){
+           this.user = undefined;
+        }else {
+            let infUser = JSON.parse(localStorage.getItem("currentUser"))
+            this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["token"])
+           
+        }
+       
+    } 
+
 }

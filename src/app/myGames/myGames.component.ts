@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../models/user";
 import {GameService} from "../models/gameService"
+import {Game} from "../models/game"
 @Component({
     selector: 'myGames',
     templateUrl: './myGames.component.html',
@@ -9,14 +10,27 @@ import {GameService} from "../models/gameService"
 export class MyGamesComponent implements OnInit {
     constructor(private gameservice : GameService) { }
     public user : User;
+    public games = [];
     ngOnInit() {
-        this.setUser()
-     }
-    setUser(){
-        let infUser = JSON.parse(localStorage.getItem("currentUser"))
-        this.user = new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["token"])
+        
+        this.getGames();  
     }
     getGames(){
-       // return this.gameservice.getGamesByUser().
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    
+      this.gameservice.getGamesById().subscribe (
+            data => {
+                this.games = [];
+                console.log(data);
+               /* data["games"].forEach(element => {
+                    console.log(element)
+                });*/
+            },
+            error => {
+                alert("no")
+                console.log(error.json())
+                this.games = [];
+            }
+        );
     }
-}
+}   

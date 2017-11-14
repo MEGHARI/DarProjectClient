@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { HomeService } from './homeService.component';
-import { DOCUMENT } from '@angular/platform-browser';
+import {User} from "../models/user"
 
 @Component({
     selector: 'home',
@@ -8,14 +8,14 @@ import { DOCUMENT } from '@angular/platform-browser';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-    ngOnDestroy(): void {
-        //this.document.body.classList.remove('back');
+export class HomeComponent implements OnInit{
+    public user : User;
+    constructor(private homeService: HomeService) {
+       
     }
-    constructor(private homeService: HomeService, @Inject(DOCUMENT) private document: Document ) {}
 
     ngOnInit() {
-        //this.document.body.classList.add('back');
+       
     }
-
+     
 }

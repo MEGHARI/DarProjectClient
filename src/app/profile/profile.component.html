@@ -1,71 +1,64 @@
-    <navbar [isLogged]="true" [user]="user"></navbar>
-	<div class="container">
-            <div class="row">
-                <div class="full-width bg-transparent">
-                <h1 class="text-center color">Custom Input file Upload</h1>
-        
-            <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12">
-                <div class="full-width">
-                <input type="file" id="base-input" class="form-control form-input form-style-base">
-                <input type="text" id="fake-input" class="form-control form-input form-style-fake" placeholder="Choose your File" readonly>
-                <span class="glyphicon glyphicon-open input-place"></span>
+<navbar></navbar>
+<div class="container" style="padding-top: 60px;">
+        <h1 class="page-header">Edit Profile</h1>
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="text-center">
+              <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
+              <h6>Upload a different photo...</h6>
+              <input type="file" class="text-center center-block well well-sm">
             </div>
-        
-                <!--================== Snippet for custom input type file on button ================-->
-        
-                <div class="full-width">
-                    <h1 class="text-center color">Custom Input file Upload button</h1>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <input type="file" id="main-input" class="form-control form-input form-style-base">
-                            <h4 id="fake-btn" class="form-input fake-styled-btn text-center truncate"><span class="margin"> Choose File</span></h4>
-                        </div>
-        
+          </div>
+          <!-- edit form column -->
+          <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+            <h3>Personal info</h3>
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Nom :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" value="{{user.lastName}}" type="text">
                 </div>
-        
-                <!--=========================input type file change on button ends here====================-->
-        
-        
-                <div class="full-width">
-                    <h1 class="text-center color">Edit Profile Snippet</h1>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="custom-form">
-                        <div class="text-center bg-form">
-                            <div class="img-section">
-                                <img src="http://lorempixel.com/200/200/nature/" class="imgCircle" alt="Profile picture">
-                                <span class="fake-icon-edit" id="PicUpload" style="color: #ffffff;"><span class="glyphicon glyphicon-camera camera"></span></span>
-                            <div class="col-lg-12">
-                                <h4 class="text-right col-lg-12"><span class="glyphicon glyphicon-edit"></span> Edit Profile</h4>
-                                <input type="checkbox" class="form-control" id="checker">
-                            </div>
-                            </div>
-                            <input type="file" id="image-input" onchange="readURL(this);" accept="image/*" disabled class="form-control form-input Profile-input-file" >
-                        </div>
-                        <div class="col-lg-12 col-md-12">
-                            <input type="text" class="form-control form-input" value="Abhinit Roy" placeholder="Name" disabled id="name">
-                            <span class="glyphicon glyphicon-user input-place"></span>
-                        </div>
-                        <div class="col-lg-12 col-md-12">
-                            <input type="text" class="form-control form-input" value="rgba@gmail.com" placeholder="Email ID" disabled id="email">
-                            <span class="glyphicon glyphicon-envelope input-place"></span>
-                        </div>
-                        <div class="col-lg-12 col-md-12">
-                            <input type="text" class="form-control form-input" value="+91-00000000" placeholder="Phone Number" disabled id="phone">
-                            <span class="glyphicon glyphicon-earphone input-place"></span>
-                        </div>
-                        <div class="col-lg-12 col-md-12">
-                            <input type="text" class="form-control form-input" value="Chandigarh, India" placeholder="Address" disabled id="place">
-                            <span class="glyphicon glyphicon-map-marker input-place"></span>
-                        </div>
-                        <div class="col-lg-12 col-md-12 text-center">
-                            <button class="btn btn-info btn-lg custom-btn" id="submit" disabled><span class="glyphicon glyphicon-save"></span> Save</button>
-                        </div>
-                        </div>
-                    </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Prénom :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" value="{{user.firstName}}" type="text">
                 </div>
-        
-            </div>
-            </div>
-                
-            </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Adresse:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" value="{{user.address}}" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-lg-3 control-label">Email:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" value="{{user.mail}}" type="text">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Mot de passe</label>
+                <div class="col-md-8">
+                  <input class="form-control" value="11111122333" type="password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label">Confirmation mot de passe</label>
+                <div class="col-md-8">
+                  <input class="form-control" value="11111122333" type="password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-3 control-label"></label>
+                <div class="col-md-8">
+                  <input class="btn btn-primary" value="Save Changes"  type="button">
+                  <span></span>
+                  <input class="btn btn-default" value="Cancel" (click)="reset()">
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        
+      </div>

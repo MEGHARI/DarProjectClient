@@ -12,28 +12,28 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li *ngIf="!isLogged" class="active"><a href="#">Accueil</a></li>
+          <li *ngIf="!isLogged" class="active"><a routerLink="/home">Accueil</a></li>
           <li><a routerLink="/about">A propos</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="isLogged"class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><span class="badge">3</span></a>
+            <li *ngIf="logged"class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-bell"></span><span class="badge">3</span></a>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="#">.........</a></li>
                   <li><a href="#">.........</a></li>
                   <li><a href="#"><strong>All notifications</strong></a></li>
               </ul>
             </li> 
-            <li *ngIf="isLogged"class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-comment"></span><span class="badge">3</span></a>
+            <li *ngIf="logged"class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-comment"></span><span class="badge">3</span></a>
               <ul class="dropdown-menu" role="menu">
                   <li><a href="#">1. Is there a way..</a></li>
                   <li><a href="#">2. Hello, admin. I would..</a></li>
                   <li><a href="#"><strong>All messages</strong></a></li>
               </ul>
             </li>          
-            <li *ngIf="!isLogged"><a routerLink="/signup" routerLinkActive="active">Inscription</a></li>
-            <li *ngIf="!isLogged"><a href="#" data-toggle="modal" data-target="#loginModal">Connexion</a></li>
-            <li *ngIf="isLogged" class="dropdown">
+            <li *ngIf="!logged"><a routerLink="/signup" routerLinkActive="active">Inscription</a></li>
+            <li *ngIf="!logged" ><a href="#" data-toggle="modal" data-target="#loginModal">Connexion</a></li>
+            <li *ngIf="logged" class="dropdown">
                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                  {{user.firstName}}
                   <span class="caret"></span>
@@ -47,7 +47,7 @@
                   <li role="separator" class="divider"></li> 
                   <li><a [routerLink]="['/users',user.id,'historique']">Historique</a></li>
                   <li role="separator" class="divider"></li> 
-                  <li><a href="">Déconnexion</a></li>
+                  <li><a href="#" (click)="logOut()" >Déconnexion</a></li>
                 </ul>
               </li>            
           </ul>

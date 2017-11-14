@@ -12,6 +12,18 @@ export class LoginService {
             .map((response: Response) => {
                 let user = response.json();
                 if (user && user.token) {
+                    //this.resetCurrentUser();
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+
+                }
+            });
+    }
+    confirmSubscription(mail: any,code:any, password: any) {
+        return this.http.post(myglobals.url+'user/confirmCode', JSON.stringify({ mail:mail,code :code, password: password }))
+            .map((response: Response) => {
+                let user = response.json();
+                if (user && user.token) {
+                   // this.resetCurrentUser();
                     localStorage.setItem('currentUser', JSON.stringify(user));
 
                 }
@@ -20,6 +32,10 @@ export class LoginService {
   
     logout() {
       localStorage.removeItem('currentUser');
+    }
+    public resetCurrentUser(){
+        if(localStorage.getItem("currentUser")!==null)
+            localStorage.removeItem("currentUser");
     }
 
 

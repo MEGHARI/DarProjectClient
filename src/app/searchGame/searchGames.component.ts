@@ -7,7 +7,7 @@ import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
   templateUrl: './searchGames.component.html' ,
   styleUrls:["./searchGames.component.css"]
 })
-export class SearchGamesComponent {
+export class SearchGamesComponent { 
 
   protected searchStr: string;
   protected captain: string;

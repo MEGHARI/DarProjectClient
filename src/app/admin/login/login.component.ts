@@ -35,16 +35,16 @@ export class LoginAdminComponent implements OnInit {
        this.authenticationService.logout();
     }
     login(infLogin : any) {
+        console.log("entré")
         this.loading = true;
-        console.log("true")
         this.authenticationService.login(infLogin.mail,infLogin.password)
             .subscribe(
                 data => {
                     myGlobals.setLogged(true);
-                    this.router.navigate(['/admin/home']);
+                    this.router.navigate(['/admin/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/home']);
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error(error.json().error["message"]);
                     this.loading = false;
                 });
     }

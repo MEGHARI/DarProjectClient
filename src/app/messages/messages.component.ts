@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MessagesService} from "./messagesService"
 import {User} from "../models/user"
 @Component({
     selector: 'messages',
@@ -8,7 +7,7 @@ import {User} from "../models/user"
 })
 export class MessagesComponent implements OnInit {
     public user : User;
-    constructor(public messageservice : MessagesService) { }
+    constructor() { }
     ngOnInit() { 
         this.setUser();
     }

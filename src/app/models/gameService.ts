@@ -9,10 +9,14 @@ import {Observable} from 'rxjs/Rx';
 export class GameService {
     constructor(private http:Http) { }
 
-    getGamesById(user : User) {
-        return this.http.get(myGlobals.url+"users/"+user.id+"/games", this.jwt()).map((response: Response) => response.json());
+    getGamesById() {
+        return this.http.get(myGlobals.url+"gameUser/listGamesPocess",this.jwt()).map((response: Response) => response.json());
     }
 
+    getAllGames() {
+        return this.http.get(myGlobals.url+"admin/listGames",this.jwt()).map((response: Response) => response.json());
+    }
+ 
     searchGame(name: String, offset:number){
         if(localStorage.getItem("currentUser"))
             return this.http.get(myGlobals.url+"game/search?title="+name+"&offset="+offset, this.jwt()).map((response: Response) => response.json());
@@ -31,19 +35,17 @@ export class GameService {
     addGame(user:Object) {
         return this.http.post(myGlobals.url+'user/register',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
-    updategame(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
-    }
 
     deleteGame(id: number) {
         return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {
-        // create authorization header with jwt token
+        
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
-            let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.token });
+            localStorage.getItem('currentUser')
+            let headers = new Headers({ 'token': currentUser.token });
             return new RequestOptions({ headers: headers });
         }
         return new RequestOptions();

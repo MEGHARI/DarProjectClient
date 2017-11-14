@@ -6,6 +6,7 @@ import * as myGlobals from "../globals";
 import {User} from '../models/index';
 import {AlertService} from '../alert/index';
 import {UserService} from '../models/index';
+import { CompleterService, CompleterData } from 'ng2-completer';
 @Component({
 
     templateUrl:"signup.component.html",
@@ -15,21 +16,33 @@ import {UserService} from '../models/index';
 export class SignupComponent implements OnInit{
     errorAlert: boolean = false;
     formGroupSignup : FormGroup;
-    user: User;
+    public user : User;
     loading = false;
+    public errors =[]
+    // auto completer
+    protected dataService: CompleterData;
+    protected searchData = [];
+    protected searchStr: string;
 
 constructor(
+    private completerService: CompleterService,
     public formBuilderSignup : FormBuilder,
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService){}
+    private alertService: AlertService){
+        this.dataService = completerService.local(this.searchData, 'address', 'address');
+    }
     
  ngOnInit(){
+    this.errors =[]
+        if(!(localStorage.getItem("currentUser")===null)){
+            this.router.navigate(["/home"])
+        }
         this.formGroupSignup = this.formBuilderSignup.group({
         name : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         firstName : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         mail : ['',Validators.required],
-        password:['',Validators.required],
+        password:['',[Validators.required,Validators.minLength(6)]],
         address:['',Validators.required],
         confirmPassword : ['',Validators.required]
 
@@ -45,13 +58,17 @@ signup(infSignup :any) {
         this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address : infSignup.address,password : infSignup.password}))
         .subscribe(
             data => {           
-                myGlobals.setSignupSuccess();
+                myGlobals.setSignupSuccess(true);
                 this.router.navigate(['/login']);    
             },
             error => {
-                console.log("whatever")
                 this.errorAlert=true;
-                this.alertService.error(error);
+                console.log(error.json().errors)
+                console.log(error.json().errors.length)
+                for(var i:number=0;i<error.json().errors.length;++i){
+                    this.errors.push(error.json().errors[i]["code"])
+                    
+                }
                 this.loading = false;
             });
                 
@@ -62,4 +79,28 @@ signup(infSignup :any) {
     password:"",confirmPassword:""});
     }
 
+    refreshData(){
+        this.userService.searchAddress(this.searchStr.replace(/\s/g, '')).subscribe(
+          data => {
+              console.log(this.searchData)
+            this.searchData = [];
+            /*data["games"].forEach(element => {
+              this.searchData.push(element)
+            })*/
+            this.dataService = this.completerService.local(this.searchData, 'address', 'address');
+        },
+          error => {
+            console.log(error)
+            //this.searchData = [];
+          }
+      );
+      }
+
+
 }
+
+
+
+
+
+
