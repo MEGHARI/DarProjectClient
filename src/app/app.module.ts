@@ -53,7 +53,7 @@ import { SearchGamesComponent } from "./searchGame/index";
 import{AlertComponent,AlertService} from './alert/index'
 
 // model
-import {UserService,GameService} from './models/index'
+import {UserService,GameService, PlatformService} from './models/index'
 
 // images
 import { ImageUploadModule } from "angular2-image-upload";
@@ -106,7 +106,8 @@ const appRoutes: Routes = [
     GameService,
     ProfileService,
     MyGameService,
-    HistoryService
+    HistoryService,
+    PlatformService
   ],
   exports:[],
   bootstrap: [AppComponent]

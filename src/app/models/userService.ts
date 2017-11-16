@@ -43,6 +43,22 @@ constructor(private http:Http) { }
         
     }
 
+    addGameUser(idPlatform:number, relation:number) {
+        return this.http.post(myGlobals.url+'gameUser/add',
+        '{"idGamePlatform":"'+idPlatform+'","relation":"'+relation+'"}',
+        this.jwt()).map((response: Response) => response.json());
+    }
+
+    deleteGameUser(idGame:string) {
+        return this.http.delete(myGlobals.url+'gameUser/remove?id='+idGame,
+        this.jwt()).map((response: Response) => response.json());
+    }
+
+    getGames(){
+
+        return this.http.get(myGlobals.url+"gameUser/listGamesPocess",this.jwt()).map((response: Response) => response.json());
+    }
+
     // private helper methods
 
     private jwt() {

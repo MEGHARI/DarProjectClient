@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { DataNode } from './DataNode'
-import {  GameService } from "../models/gameService";
+import {  PlatformService, GameService, UserService  } from "../models/index";
 import {Game} from "../models/game"
 import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
 import {User} from "../models/user"
@@ -18,7 +18,11 @@ export class SearchComponent implements OnInit {
     public user : User;
     public name : string;
     public id:number;
-    constructor(private gameService : GameService,private activatedRoute : ActivatedRoute,
+    public idGamePlatform;
+    public platforms = [];
+    constructor(private gameService : GameService, private platformService : PlatformService,
+        private userService: UserService,
+        private activatedRoute : ActivatedRoute,
         private elRef:ElementRef) { }
 
     ngOnInit() { 
@@ -52,15 +56,43 @@ export class SearchComponent implements OnInit {
     }
 
     dynamicModal(id:number,name:string){
+        //Request GET to get all platforms of a games
+        //gameUser/getPlateforms
+        /*
+            <select id="select">
+                <option value="valeur1">Valeur 1</option> 
+                <option value="valeur2" selected>Valeur 2</option>
+                <option value="valeur3">Valeur 3</option>
+            </select>
+        */
+        this.platforms = [];
+        this.platformService.getPlatformsByGame(id).subscribe(
+            data => {
+                console.log(data);
+                data.platforms.forEach(e =>{
+                    this.platforms.push(e);
+                });
+            },
+            error => console.log(error),
+        );
         this.id=id;
+    
         $('#modalDescription').on('show.bs.modal', function(e) {
             $('#modalDescription .modal-header #myModalLabel').html(name);
-            $('#modalDescription .modal-body').html("Voulez vous ajouter le jeu "+
-            "<b>"+name+"</b> à votre liste de jeux possédés ?");
+            $('#modalDescription .modal-body #gameName').html(name);
         });
     }
 
-    confirm(){
+    confirm(idGame){
+        this.userService.addGameUser(this.idGamePlatform,1).subscribe(
+            data => {
+                console.log(data);
+                //Afficher un toast comme quoi il a réussit l'ajout
+            },
+            error => {
+                console.log(error);}
+        );
+        console.log(idGame+" + "+this.idGamePlatform);
         $("#modalDescription").modal("hide");
     }
     setUser(){

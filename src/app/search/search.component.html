@@ -40,8 +40,15 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
+        
         <div class="modal-body" id ="content-body">
-            
+            Ajouter le jeu <b id="gameName"></b> à votre bibliothèque ?<br />
+            Selectionnez d'abords une plateform :
+            <div>
+                <select id="plateformGame" [(ngModel)]="idGamePlatform">
+                        <option *ngFor="let platform of platforms" [ngValue]="platform.id_platform">{{platform.nom_platform}}</option>
+                </select>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>

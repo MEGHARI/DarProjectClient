@@ -1,54 +1,51 @@
 <navbar> </navbar>
-    <div class="container"> 
-            <div class="row">
-                <div class="col-md-4">
-                      <div class="thumbnail">
-                        <img src="http://image.jeuxvideo.com/medias-md/149711/1497112456-6769-card.jpg" alt="" class="img-responsive">
-                        <div class="caption">
-                          <h4 class="pull-right">etat du jeux</h4>
-                          <h4><a href="#">Mobile Product</a></h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<div class="search-results">
+    <div class="full-width bg-transparent">
+        <div class="page">
+            <h3>Mes jeux :</h3>
+            <div class="listGames">
+                <div *ngFor="let game of games">
+                    <div class="game" (click)="alert(this)" style="cursor:pointer">
+                        <div class="thumb">
+                             <img *ngIf="game.game_cover" src="http:{{game.game_cover}}">
+                            <img *ngIf="!game.game_cover" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
                         </div>
-                        <div class="space-ten"></div>
-                        <div class="btn-ground text-center">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#product_view"><i class="fa fa-search"></i>Détails</button>
-                        </div>
-                        <div class="space-ten"></div>
-                      </div>
-                    </div>
-            </div>
-        </div>
-        <div class="modal fade product_view" id="product_view">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
-                        <h3 class="modal-title">nom du jeux</h3>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 product_img">
-                                <img src="http://image.jeuxvideo.com/medias-md/149711/1497112456-6769-card.jpg" class="img-responsive">
+                        <div class="informations">
+                            <div class="titleGame">{{game.game_name}}</div>
+                            <div class="description">{{game.summary | truncate : 250 : true}}</div>
+                            <div>
+                                <b>Date release :</b> {{game.date_release | date}}
                             </div>
-                            <div class="col-md-6 product_content">
-                                <h4>Product Id: <span>51526</span></h4>
-                                <div class="rating">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    (10 reviews)
-                                </div>
-                                <p id="summary">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>                                
-                                <div class="space-ten"></div>
-                                <div class="btn-ground">
-                                    <button type="button" class="btn btn-primary"> retirer </button>
-                                    <button type="button" class="btn btn-primary"> retirer des échanges</button>
-                                </div>
-                            </div>
+                            <div><b>Plateforme :</b> {{game.platform}}</div>
+                            <button type="button" class="btn btn-danger" (click)="dynamicModal(game.id, game.game_name, game.platform)" 
+                            data-toggle="modal" data-target="#modalDescription">Retirer</button>
                         </div>
                     </div>
+                    <hr class="style-two" />
                 </div>
             </div>
+
+        </div>  
+    </div>
+</div>
+
+<!-- Modal Description Game  -->
+<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
+        
+        <div class="modal-body" id ="content-body">
+            Retrirer ce jeu <b id="gameName"></b> de votre bibliothèque ?<br />
+            Plateforme : <b id="platform"></b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+          <button type="button" id="confirm" (click)="confirmDelete()" class="btn btn-primary">Oui</button>
+        </div>
+      </div>
+    </div>
+</div>
