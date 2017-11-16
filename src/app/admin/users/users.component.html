@@ -1,5 +1,5 @@
 <navbar-admin></navbar-admin>
-<div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" *ngFor="let user of users">
+<div  class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2" *ngFor="let user of users">
         <div class="row user-row">
             <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
                 <img class="img-circle"
@@ -58,7 +58,11 @@
                                     </tr>
                                     <tr>
                                         <td>listes des jeux:</td>
-                                        <td><a > clickez ici</a></td>
+                                        <td><a [routerLink]="['/admin',idAdmin,'users',user.id,'games']" > clickez ici</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>info d'echanges de l'ulitilisateur:</td>
+                                        <td><a [routerLink]="['/admin',idAdmin,'users',user.id,'statistics']" > clickez ici</a></td>
                                     </tr>
                                     
                                     </tbody>
@@ -129,3 +133,5 @@
           </div>
         </div>
     </div>
+    <div class="col-xs-8 alert alert-danger" *ngIf="users.length == 0"><h1>La liste est vide </h1></div>
+    

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewContainerRef} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
 import {UserService} from "../../models/userService"
+import {GameService} from "../../models/gameService"
 import {User} from "../../models/user"
 import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var $:any;
 @Component({
@@ -16,24 +18,24 @@ export class UsersAdminComponent implements OnInit {
     public formGroupMessage: FormGroup;
     user : User;
     users = [];
+    idAdmin : number;
     constructor(private activatedRoute: ActivatedRoute,private router : Router,
-        public formBuilder : FormBuilder,private userService :UserService) {
+        public formBuilder : FormBuilder,private userService :UserService,
+    private gameService :GameService) {
+       console.log(this.router.url)
        if(this.router.url.match("/admin/[0-9]+/users")){
-       this.getAllUsers();
+            this.activatedRoute.params.subscribe(params => {
+                this.idAdmin= +params["idAdmin"]
+                this.getAllUsers();
+            });
 
-       }else if(this.router.url.match("/admin/[0-9]+/games/[0-9]+/users")){
-        this.activatedRoute.params.subscribe(params => {
-
-     
-         });
-       }else{
-           this.router.navigate(['/admin/home'])
        }
 
       }
     
 
     ngOnInit() { 
+        
         $('[data-toggle="tooltip"]').tooltip();
         this.formGroupMessage = this.formBuilder.group({
             textMessage :['',Validators.required]
@@ -74,13 +76,17 @@ export class UsersAdminComponent implements OnInit {
         this.userService.getAll().subscribe(
             
             data => {
-                data["users"].forEach(element => {
-                this.users.push(new User(element["first_name"],element["last_name"],
-                element["address"],element["mail"],element["id"],element["statut"],element["token"]))
-                })
-               console.log(data)
+                this.users = [];
+                if(data["users"]!=undefined) {
+                    data["users"].forEach(element => {
+                        this.users.push(new User(element["first_name"],element["last_name"],
+                        element["address"],element["mail"],element["id"],element["statut"],element["token"]))
+                        })
+                       console.log(data)
+                }
+               
             },
-            error => {
+            error => { this.users=[]
             });
     }
 
@@ -90,7 +96,9 @@ export class UsersAdminComponent implements OnInit {
             $('#modalBanned .modal-header #myModalLabel').html(us.lastName);
             $('#modalBanned .modal-body').html("Voulez vous vraiment bannir"+
             "<b>  "+us.lastName+"  "+us.firstName+" </b> à votre liste de jeux possédés ?");
+            
         });
+        
     }
     unbann(us:User){
         this.user = us;
@@ -114,6 +122,7 @@ export class UsersAdminComponent implements OnInit {
                         }
                     }
                     $("#modalBanned").modal("hide");
+                 
                 },
                 error =>{console.log(error.json())}
             )
@@ -127,6 +136,8 @@ export class UsersAdminComponent implements OnInit {
                             this.user.status=1;
                         }
                     }
+                    $("#modalBanned").modal("hide");
+               
                 },
                 error =>{console.log(error.json())}
             )
@@ -142,4 +153,5 @@ export class UsersAdminComponent implements OnInit {
             error =>{console.log(error)}
         )
     }
+
 }

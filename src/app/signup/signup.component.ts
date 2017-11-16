@@ -7,6 +7,7 @@ import {User} from '../models/index';
 import {AlertService} from '../alert/index';
 import {UserService} from '../models/index';
 import { CompleterService, CompleterData } from 'ng2-completer';
+declare var $:any;
 @Component({
 
     templateUrl:"signup.component.html",
@@ -34,6 +35,7 @@ constructor(
     }
     
  ngOnInit(){
+   
     this.errors =[]
         if(!(localStorage.getItem("currentUser")===null)){
             this.router.navigate(["/home"])
@@ -48,12 +50,12 @@ constructor(
 
     },{
         validator: PasswordValidation.MatchPassword
-      }
-   )
+      })
     
-}
+    }
 
 signup(infSignup :any) {
+   
     this.loading = true;
         this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address : infSignup.address,password : infSignup.password}))
         .subscribe(
@@ -80,14 +82,13 @@ signup(infSignup :any) {
     }
 
     refreshData(){
-        this.userService.searchAddress(this.searchStr.replace(/\s/g, '')).subscribe(
+        this.userService.searchAddress(this.searchStr).subscribe(
           data => {
-              console.log(this.searchData)
             this.searchData = [];
-            /*data["games"].forEach(element => {
-              this.searchData.push(element)
-            })*/
-            this.dataService = this.completerService.local(this.searchData, 'address', 'address');
+            data["all_addresses"].forEach(element => {
+              this.searchData.push(element ["address"])
+            })
+            this.dataService = this.completerService.local(this.searchData, null, null);
         },
           error => {
             console.log(error)

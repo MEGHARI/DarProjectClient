@@ -29,9 +29,10 @@ export class GameService {
     }
 
     getGamesByUser(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(myGlobals.url+'/admin/listGamesPocess?id='+id, this.jwt()).map((response: Response) => response.json());
     }
 
+    
     addGame(user:Object) {
         return this.http.post(myGlobals.url+'user/register',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }

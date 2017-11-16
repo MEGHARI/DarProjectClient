@@ -1,1 +1,28 @@
 <navbar-admin></navbar-admin>
+<div class="container col-xs-8 ">
+
+<div class="table-title">
+    <h3>liste des échanges </h3>
+    </div>
+    <table class="table-fill">
+    <thead>
+    <tr>
+    <th class="text-left">l'utilisateur conérné </th>
+    <th class="text-left">Jeux Concérné </th>
+    <th class="text-left">Plateforme </th>
+    <th class="text-left">date retour </th>
+    <th class="text-left">Retard </th>
+    </tr>
+    </thead>
+    <tbody class="table-hover" *ngFor="let statistic of statistics">
+    <tr>
+    <td class="text-left">{{statistic.firstName}}  {{statistic.lastName}}</td>
+    <td class="text-left">{{statistic.gameName}}</td>
+    <td class="text-left">{{statistic.platform}}</td>
+    <td class="text-left">{{statistic.date_return}}</td>
+    <td class="text-left">{{statistic.retard}}</td>
+    </tr>
+    </tbody>
+    </table>
+    
+</div>

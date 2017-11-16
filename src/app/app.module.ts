@@ -9,7 +9,7 @@ import { HttpModule } from '@angular/http';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import {AdminModule} from "./admin/admin.module"
 //import { AuthModule } from 'angular2-auth';
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
+//import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { Ng2CompleterModule } from "ng2-completer";
 
 /**
@@ -67,7 +67,7 @@ import {MyGamesComponent,MyGameService} from "./myGames/index"
 // history
 import {HistoryComponent,HistoryService} from "./history/index"
 //Pipe
-import {TruncatePipe} from './pipes/truncate'
+//import {TruncatePipe} from './pipes/truncate'
 
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
@@ -75,7 +75,7 @@ const appRoutes: Routes = [
    { path: 'search/:name', component: SearchComponent },
    { path: 'test', component: TestComponent },
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
-   { path: '', component: HomeComponent },
+   //{ path: '', component: HomeComponent },
    { path: 'home', component: HomeComponent },
    {path :'about',component:AboutComponent},
    { path: 'signup', component: SignupComponent  },
@@ -89,14 +89,14 @@ const appRoutes: Routes = [
 @NgModule({
 
   imports: [BrowserModule,Ng2CompleterModule ,HttpModule,
-    RouterModule.forRoot(appRoutes),FormsModule
-    ,ReactiveFormsModule, InfiniteScrollModule,ImageUploadModule.forRoot(),AdminModule],
+    RouterModule.forRoot(appRoutes)
+    ,InfiniteScrollModule,ImageUploadModule.forRoot(),AdminModule],
   
   declarations: [AppComponent,AboutComponent,
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,NavbarComponent,
    SearchGamesComponent,SearchComponent, TestComponent,
-   TruncatePipe,MessagesComponent,MyGamesComponent,HistoryComponent,
+   MessagesComponent,MyGamesComponent,HistoryComponent,
     ],
 
   providers :[
