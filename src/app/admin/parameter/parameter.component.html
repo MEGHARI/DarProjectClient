@@ -1,0 +1,117 @@
+<navbar-admin></navbar-admin>
+<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+           <div class="panel-title text-center">
+                   <h1 class="title">Ajouter un administrateur</h1>
+                   <hr />
+               </div>
+        </div> 
+        <div class="main-login main-center">
+            <form [formGroup] ="formGroupSignup">     
+                  <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0) || (errors.indexOf(1)>-1),'has-success':(formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0)}">
+                      <label for="name" class="cols-sm-2 control-label">Nom :</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                      <input type="text" formControlName = "name" class="form-control" name="name" id="name"  placeholder="Entrez votre nom"/>
+                      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0 && (errors.indexOf(1)==-1))"></span>
+                      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0)||(errors.indexOf(1)>-1)"></span>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="form-group" [ngClass]="{'has-error':(!formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0) || (errors.indexOf(2)>-1),'has-success':formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0}">
+                    <label for="name" class="cols-sm-2 control-label">Prenom :</label>
+                    <div class="cols-sm-10">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control"formControlName="firstName" name="name" id="name"  placeholder="Entrez votre prénom"/>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0 && (errors.indexOf(2)==-1)"></span>
+                        <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.firstName.valid && formGroupSignup.controls.firstName.value.length >0 || (errors.indexOf(2)>-1)"></span>
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="form-group has-feedback" [ngClass]="{'has-error':(!formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0) || (errors.indexOf(3)>-1),'has-success':formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0}">                
+                      <label for="username" class="cols-sm-2 control-label">Addresse :</label>
+                      <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                          <input type="text" formControlName="address" class="form-control" name="username" id="username"  placeholder="Entrez votre addresse"/>
+                          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0 && (errors.indexOf(3)==-1)"></span>
+                          <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0) ||  (errors.indexOf(3)>-1)"></span>  
+                        </div>
+                      </div>
+                    </div>
+                   <!-- <ng2-completer [(ngModel)]="searchStr"  
+                    [inputClass]="['form-control']"
+                    [ngModelOptions]="{standalone: true}"
+                    [datasource]="dataService"
+                    [minSearchLength]="6"
+                    (ngModelChange)="refreshData()" 
+                    ></ng2-completer>-->
+        
+                    <!--<div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0,'has-success':formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0}">                
+                        <label for="username" class="cols-sm-2 control-label">Code Postal :</label>
+                        <div class="cols-sm-10">
+                          <div class="input-group">
+                              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>     
+                            <input type="text" formControlName="postalCode"  class="form-control" name="username" id="username"  placeholder="Entrez votre code postal"/>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>
+                            <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>  
+                        
+                          </div>
+                        </div>
+                      </div>-->
+        
+            
+        
+                  <div class="form-group has-feedback" [ngClass]="{'has-error':(!formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0) || (errors.indexOf(4)>-1),'has-success':formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0}">                
+                            <label for="email" class="cols-sm-2 control-label">Addresse Mail :</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                      <input type="email" formControlName="mail" class="form-control" name="email" id="email"  placeholder="Entrez votre addresse mail"/>
+                      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0 && (errors.indexOf(4)==-1)"></span>
+                      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.mail.valid && formGroupSignup.controls.mail.value.length >0) || (errors.indexOf(4)>-1)"></span>  
+                    </div>
+                  </div>
+                </div>
+        
+                
+                <div class="form-group has-feedback" [ngClass]="{'has-error':(!formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0) || (errors.indexOf(5)>-1),'has-success':formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0}">                
+                    <label for="password" class="cols-sm-2 control-label">mot de passe </label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <input type="password" formControlName="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0 && (errors.indexOf(5)==-1)"></span>
+                      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.password.valid && formGroupSignup.controls.password.value.length >0) || (errors.indexOf(5)>-1)"></span>  
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="form-group has-feedback" [ngClass]="{'has-error':(!formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0) || (errors.indexOf(5)>-1),'has-success':formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0}">                
+                    <label for="confirm" class="cols-sm-2 control-label">Confirmez mot de passe</label>
+                  <div class="cols-sm-10">
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                      <input type="password" formControlName="confirmPassword" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0 && (errors.indexOf(5)==-1)"></span>
+                      <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.confirmPassword.valid && formGroupSignup.controls.confirmPassword.value.length >0)||(errors.indexOf(5)>-1)"></span>  
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="form-group ">
+                  <button 
+                   class="btn btn-default btn-lg btn-block login-button" [disabled]="!formGroupSignup.valid" (click)="createAdmin(formGroupSignup.value)" >Register
+                  <img *ngIf="loading " src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />               
+                  </button>
+                </div>      
+              </form>
+        </div>
+    </div>
+</div>
+
