@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/user"
+import {UserService}  from "../../models/userService"
+import {Router} from "@angular/router"
 @Component({
     selector: 'navbar-admin',
     templateUrl: './navbar.component.html',
@@ -7,7 +9,7 @@ import {User} from "../../models/user"
 })
 export class NavbarAdminComponent implements OnInit {
     admin : User;
-    constructor() { }
+    constructor(private userService :UserService, private router : Router) { }
 
     ngOnInit() { this.setUser()}
     setUser(){
@@ -20,5 +22,19 @@ export class NavbarAdminComponent implements OnInit {
         }
        
     } 
+    logOut(){
+  
+        this.userService.logout().subscribe(
+            data =>{
+                    localStorage.removeItem("currentUser")
+                    localStorage.removeItem("currentUser")
+                    this.router.navigate(["/home"])
+            
+            },
+            error =>{console.log(error.json())}
+        )
+       
+        
+    }
 }
 

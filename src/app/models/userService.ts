@@ -18,6 +18,9 @@ constructor(private http:Http) { }
     create(user:Object) {
         return this.http.post(myGlobals.url+'user/register',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
+    createAdmin(user:Object) {
+        return this.http.post(myGlobals.url+'/admin/create',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
+    }
     update(user: User) {
         return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
     }
@@ -40,6 +43,22 @@ constructor(private http:Http) { }
 
     searchAddress(address:string){
         return this.http.get(myGlobals.url+"service/googlemapAutocomplete?prefixe="+address).map((response: Response) => response.json());      
+        
+    }
+    logout(){
+        return this.http.get(myGlobals.url+"user/logout", this.jwt()).map((response: Response) => response.json());
+        
+    }
+
+    getUsersByGame(id: number) {
+        return this.http.get(myGlobals.url+'user/listUsersGame?idApiGame='+id,this.jwt()).map((response: Response) => response.json());
+    }
+    getStatisticsByUser(id:number){
+        return this.http.get(myGlobals.url+'admin/statsExchanges?idUser='+id,this.jwt()).map((response: Response) => response.json());
+        
+    }
+    getAllAdmins(){
+        return this.http.get(myGlobals.url+'admin/listAmins',this.jwt()).map((response: Response) => response.json());
         
     }
 

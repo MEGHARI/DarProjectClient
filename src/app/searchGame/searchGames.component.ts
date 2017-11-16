@@ -23,13 +23,13 @@ export class SearchGamesComponent {
     console.log(s);
   }
   refreshData(){
-    this.gameService.autoSearchGames(this.searchStr.replace(/\s/g, '')).subscribe(
+    this.gameService.autoSearchGames(this.searchStr).subscribe(
       data => {
         this.searchData = [];
         data["games"].forEach(element => {
-          this.searchData.push(element)
+          this.searchData.push(element["name"])
         })
-        this.dataService = this.completerService.local(this.searchData, 'name', 'name');
+        this.dataService = this.completerService.local(this.searchData, null, null);
     },
       error => {
         console.log(error)

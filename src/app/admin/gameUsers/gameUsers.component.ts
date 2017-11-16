@@ -10,10 +10,10 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 declare var $:any;
 @Component({
     selector: 'users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css']
+    templateUrl: './gameUsers.component.html',
+    styleUrls: ['./gameUsers.component.css']
 })
-export class UsersAdminComponent implements OnInit {
+export class GameUsersComponent implements OnInit {
    
     public formGroupMessage: FormGroup;
     user : User;
@@ -23,12 +23,13 @@ export class UsersAdminComponent implements OnInit {
         public formBuilder : FormBuilder,private userService :UserService,
     private gameService :GameService) {
        console.log(this.router.url)
-       if(this.router.url.match("/admin/[0-9]+/users")){
-            this.activatedRoute.params.subscribe(params => {
-                this.idAdmin= +params["idAdmin"]
-                this.getAllUsers();
-            });
-
+       if(this.router.url.match("/admin/[0-9]+/games/[0-9]+/users")){
+        this.activatedRoute.params.subscribe(params => {
+            let idGame = +params["idGame"];
+            this.idAdmin = +params["idAdmin"]
+            this.getUsersByGame(idGame);
+     
+         });
        }
 
       }
@@ -71,24 +72,6 @@ export class UsersAdminComponent implements OnInit {
         });
     }
 
-    getAllUsers(){
-        
-        this.userService.getAll().subscribe(
-            
-            data => {
-                this.users = [];
-                if(data["users"]!=undefined) {
-                    data["users"].forEach(element => {
-                        this.users.push(new User(element["first_name"],element["last_name"],
-                        element["address"],element["mail"],element["id"],element["statut"],element["token"]))
-                        })
-                       console.log(data)
-                }
-               
-            },
-            error => { this.users=[]
-            });
-    }
 
     bann(us:User){
         this.user = us;
@@ -147,11 +130,24 @@ export class UsersAdminComponent implements OnInit {
         this.user = us;   
     }
     send(infoMessage : any){
-        console.log(JSON.stringify({id:this.user.id,message:infoMessage.textMessage}))
         this.userService.sendMessageToUser(this.user.id,infoMessage.textMessage).subscribe(
             data => {console.log(data)},
             error =>{console.log(error)}
         )
     }
-
+    getUsersByGame(id : number){
+        this.userService.getUsersByGame(id).subscribe(
+            data => {
+                this.users= [];
+                if(data["users"]!=undefined) {
+                    data["users"].forEach(element => {
+                        this.users.push(new User(element["first_name"],element["last_name"],
+                        element["address"],element["mail"],element["id"],element["statut"],element["token"]))
+                            
+                    })
+                } },
+            error => {this.users=[]}
+        )
+    }
+   
 }

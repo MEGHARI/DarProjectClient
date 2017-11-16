@@ -29,7 +29,7 @@ export class GameService {
     }
 
     getGamesByUser(id: number) {
-        return this.http.get('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(myGlobals.url+'/admin/listGamesPocess?id='+id, this.jwt()).map((response: Response) => response.json());
     }
 
     deleteGame(id: number) {

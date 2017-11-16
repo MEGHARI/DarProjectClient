@@ -9,7 +9,7 @@
             [inputClass]="['form-control']"
             [ngModelOptions]="{standalone: true}"
             [datasource]="dataService"
-            [minSearchLength]="0"
+            [minSearchLength]="3"
             (ngModelChange)="refreshData()" 
             ></ng2-completer>
 

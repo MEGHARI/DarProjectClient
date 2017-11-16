@@ -86,10 +86,6 @@ export class LoginComponent implements OnInit {
         }
         
     }
-    public logOut(){
-        localStorage.removeItem("currentUser");
-    }
-   
     
 
 }
