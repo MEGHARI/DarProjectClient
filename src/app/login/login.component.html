@@ -1,60 +1,16 @@
-<alert class="text-center"></alert>
-<div class="panel panel-info" >
-    <div class="panel-heading">
-        <div class="panel-title">Connexion</div>
-            <div class="mdp-oublie">
-              <a href="#">mot de passe oublié?</a>
-            </div>
-        </div>     
-      
-        <div style="padding-top:30px" class="panel-body body" >
-      
-          <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-          <div class="col-md-12">
-              Login via
-              <div class="social-buttons">
-                <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-              </div>
 
-              <br/>
-              Ou
-              <br/>
-
-            <form class="form-horizontal" role="form" [formGroup]="formGroupLogin" (ngSubmit)="login(formGroupLogin.value)">
-              <div style="margin-bottom: 25px" class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input id="login-username" type="email" formControlName="mail" class="form-control" name="username" value="" placeholder="username or email">                                        
-              </div>
-
-              <div style="margin-bottom: 25px" class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="login-password" type="password" formControlName="password" class="form-control" name="password" placeholder="password">
-            </div>
-                                      
-              <div *ngIf="isConfirm" style="margin-bottom: 25px" class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                  <input id="login-password" type="text" formControlName="codeConfirm" class="form-control" name="codeConfirm" placeholder="code de confirmation">
-              </div>
-            
-      
-                <div style="margin-top:10px" class="form-group">
-                  <div class="col-sm-12 controls">
-                      <button id="btn-login"  class="btn btn-success" [disabled]="!formGroupLogin.valid"> Login  </button>
-                      <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />     
-                  </div>
-                </div>
-                <div class="form-group">
-                        <div class="col-md-12 control">
-                            <div style="border-top: 1px solid#EE0A0A; padding-top:15px; font-size:85%" >
-                                  Vous n'avez pas de compte! 
-                                  <a href="/signup">Inscrivez vous ici</a>
-                            </div>
-                          </div>
-                    </div> 
-              </form>     
-             </div>                     
-          </div> 
-
-         
-     
+          <alert class="text-center"></alert>
+          <div class="card card-container">
+              <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+              <p id="profile-name" class="profile-name-card"></p>
+              <form class="form-signin" [formGroup]="formGroupLogin" (ngSubmit)="login(formGroupLogin.value)">
+                  <span id="reauth-email" class="reauth-email"></span>
+                  <input formControlName="mail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                  <input formControlName="password"  type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                  <button  class="btn btn-lg btn-primary btn-block btn-signin" [disabled]="!formGroupLogin.valid" >Connexion</button>
+                  <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />                         
+              </form><!-- /form -->
+              <a href="#" class="forgot-password">
+                  Mot de passe oublié ?
+              </a>
+          </div><!-- /card-container -->

@@ -8,8 +8,8 @@ import {AlertService} from '../alert/index';
 import {UserService} from '../models/index';
 import { CompleterService, CompleterData } from 'ng2-completer';
 declare var $:any;
-@Component({
 
+@Component({
     templateUrl:"signup.component.html",
     styleUrls:["signup.component.css"],
     selector :"signup",
@@ -82,20 +82,21 @@ signup(infSignup :any) {
     }
 
     refreshData(){
-        this.userService.searchAddress(this.searchStr).subscribe(
-          data => {
-            this.searchData = [];
-            data["all_addresses"].forEach(element => {
-              this.searchData.push(element ["address"])
-            })
-            this.dataService = this.completerService.local(this.searchData, null, null);
-        },
-          error => {
-            console.log(error)
-            //this.searchData = [];
-          }
-      );
-      }
+        if(this.searchStr.length>5){
+            this.userService.searchAddress(this.searchStr).subscribe(
+            data => {
+                this.searchData = [];
+                data["all_addresses"].forEach(element => {
+                this.searchData.push(element ["address"])
+                })
+                this.dataService = this.completerService.local(this.searchData, null, null);
+            },
+            error => {
+                console.log(error)
+                //this.searchData = [];
+            });
+        }
+    }
 
 
 }
