@@ -34,6 +34,39 @@
   :host >>> #search .form-control{
     height: 30px;
   }
+
+  :host /deep/ .completer-input {
+    width: 100%;
+    }
+
+
+:host >>> .completer-dropdown {
+  margin-top :35px !important;
+    width: 90% !important;
+    max-width: 515px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100px;
+    color: red;
+}
+
+:host >>> .completer-row
+{ display: inherit; }
+
+:host >>> .completer-selected-row {
+    background-color: lightblue;
+    color: yellow;
+}
+
+:host >>> .completer-row p {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.btn-custom{
+    min-width: 100%; 
+}
   
  
  

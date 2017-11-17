@@ -16,7 +16,8 @@
           <td>{{admin.firstName}} {{admin.lastName}}</td>
           <td>{{admin.address}}</td>
           <td>{{admin.mail}}</td>
-          <td>{{admin.status}}</td>
+          <td *ngIf="admin.status == -1">bannis</td>
+          <td *ngIf="admin.status == 1">actif</td>
         </tr>
       </tbody>
     </table>

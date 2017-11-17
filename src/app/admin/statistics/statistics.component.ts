@@ -41,8 +41,8 @@ export class StaticticsComponent implements OnInit {
              
           this.json["exchanges"].forEach(elemen => {
             let element = elemen["exchange"];
-            this.statistics.push({firstName : element['firstName'],lastName : element['lastName'],
-            date_return : element['date_return'],gameName : element["gameName"],id_exchange:element["id_exchange"],
+            this.statistics.push({firstName : element['first_name'],lastName : element['last_name'],
+            date_return : element['date_return'],gameName : element["game_name"],id_exchange:element["id_exchange"],
             platform : element["platform"],retard : element["retard"]
         })
         });

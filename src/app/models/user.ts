@@ -8,6 +8,7 @@ export class User {
         public mail : string,
         public id : number,
         public status : number,
+        public urlPicture :string,
         public token : string   
         
     ){

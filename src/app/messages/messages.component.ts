@@ -13,7 +13,7 @@ export class MessagesComponent implements OnInit {
     }
     setUser(){
         let infUser = JSON.parse(localStorage.getItem("currentUser"))
-        this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["token"])
+        this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["url_picture"],infUser["token"])
     }
     getMessages(){
         

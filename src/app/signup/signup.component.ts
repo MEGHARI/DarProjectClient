@@ -45,7 +45,7 @@ constructor(
         firstName : ['',[Validators.required,Validators.pattern("[a-zA-Z]{3,}")]],
         mail : ['',Validators.required],
         password:['',[Validators.required,Validators.minLength(6)]],
-        address:['',Validators.required],
+        address:[''],
         confirmPassword : ['',Validators.required]
 
     },{
@@ -57,7 +57,7 @@ constructor(
 signup(infSignup :any) {
    
     this.loading = true;
-        this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address : infSignup.address,password : infSignup.password}))
+        this.userService.create(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address : this.searchStr,password : infSignup.password}))
         .subscribe(
             data => {           
                 myGlobals.setSignupSuccess(true);

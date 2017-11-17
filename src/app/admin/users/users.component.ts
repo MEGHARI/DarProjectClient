@@ -80,7 +80,7 @@ export class UsersAdminComponent implements OnInit {
                 if(data["users"]!=undefined) {
                     data["users"].forEach(element => {
                         this.users.push(new User(element["first_name"],element["last_name"],
-                        element["address"],element["mail"],element["id"],element["statut"],element["token"]))
+                        element["address"],element["mail"],element["id"],element["statut"],element["url_picture"],element["token"]))
                         })
                        console.log(data)
                 }

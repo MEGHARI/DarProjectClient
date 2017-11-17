@@ -77,6 +77,10 @@ constructor(private http:Http) { }
 
         return this.http.get(myGlobals.url+"gameUser/listGamesPocess",this.jwt()).map((response: Response) => response.json());
     }
+    searchGamesForExchanging(title : string){
+        return this.http.get(myGlobals.url+'exchange/autoCompleteSearch?title='+title,this.jwt()).map((response: Response) => response.json());
+        
+    }
 
     // private helper methods
 

@@ -14,10 +14,9 @@ export class NavbarComponent implements OnInit {
     protected dataService: CompleterData;
     protected searchData = [];
     protected searchStr: string;
-    private completerService: CompleterService;
     public  logged : boolean;
     public user : User;
-    constructor(public router :Router,private userService : UserService,private gameService : GameService) { }
+    constructor( private completerService: CompleterService,public router :Router,private userService : UserService,private gameService : GameService) { }
 
     ngOnInit() {
         this.setUser()
@@ -41,29 +40,35 @@ export class NavbarComponent implements OnInit {
             this.logged = false;
         }else {
             let infUser = JSON.parse(localStorage.getItem("currentUser"))
-            this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["token"])
+            this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["url_picture"],infUser["token"])
             this.logged = true;
         }
        
     } 
     refreshData(){
-        if(this.searchStr.length>5){
-            this.userService.searchAddress(this.searchStr).subscribe(
+        if(this.searchStr.length>3){
+            this.gameService.autoSearchGames(this.searchStr).subscribe(
             data => {
                 this.searchData = [];
-                data["games"].forEach(element => {
-                this.searchData.push(element ["name"])
-                })
+                if(data["games"]){
+                    data["games"].forEach(element => {
+                        this.searchData.push(element["name"])
+                    });
+                }
                 this.dataService = this.completerService.local(this.searchData, null, null);
             },
             error => {
-                console.log(error)
+                console.log(error.json())
                 //this.searchData = [];
             });
         }
     }
-    searchGamesLike(){
-
+    searchForExchanging(title : string){
+        console.log("entreee")
+        this.gameService.getGamesExchenged(title).subscribe(
+            data =>{console.log(data)},
+            error => (console.log(error.json()))
+        )
     }
 
 

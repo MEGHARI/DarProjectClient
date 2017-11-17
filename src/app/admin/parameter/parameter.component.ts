@@ -42,7 +42,7 @@ export class ParameterAdminComponent implements OnInit {
         this.userService.createAdmin(({lastName : infSignup.name,firstName :infSignup.firstName,mail:infSignup.mail,address :this.searchStr,password : infSignup.password}))
         .subscribe(
             data => {           
-               this.admins.push(new User(infSignup.lastName, infSignup.firstName,this.searchStr,infSignup.mail, infSignup.id, infSignup.status,"token")) 
+               this.admins.push(new User(infSignup.lastName, infSignup.firstName,this.searchStr,infSignup.mail, infSignup.id,undefined, infSignup.status,"token")) 
                this.loading = false; 
                toastr.success(infSignup.lastName+'ajouté', '', {positionClass: "toast-bottom-center"});
                
@@ -63,7 +63,7 @@ export class ParameterAdminComponent implements OnInit {
         this.userService.getAllAdmins().subscribe(
             
             data => { console.log(data["admins"]);  data["admins"].forEach(element => {
-                this.admins.push(new User(element["last_name"],element["firstName"], element["address"],element["email"], element["id_admin"],element["status"],element["token"]));
+                this.admins.push(new User(element["last_name"],element["first_name"],element["address"],element["email"], element["id_admin"],element["statut"],element["url_picture"],element["token"]));
             });},
             error => {console.log(error.json())}
         )

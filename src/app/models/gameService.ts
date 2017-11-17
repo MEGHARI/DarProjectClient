@@ -29,11 +29,15 @@ export class GameService {
     }
 
     getGamesByUser(id: number) {
-        return this.http.get(myGlobals.url+'/admin/listGamesPocess?id='+id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(myGlobals.url+'admin/listGamesPocess?id='+id, this.jwt()).map((response: Response) => response.json());
     }
 
     deleteGame(id: number) {
         return this.http.delete('/api/users/' + id, this.jwt()).map((response: Response) => response.json());
+    }
+    getGamesExchenged(title : string){
+        return this.http.get(myGlobals.url+'exchange/search?title='+title, this.jwt()).map((response: Response) => response.json());
+        
     }
 
     private jwt() {

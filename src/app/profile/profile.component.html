@@ -13,58 +13,78 @@
           <!-- edit form column -->
           <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3>Information</h3>
-            <form class="form-horizontal" role="form">
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Nom :</label>
+
+            <form class="form-horizontal" role="form" [formGroup] ="formGroupUpdate">
+
+              <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0) || (errors.indexOf(1)>-1),'has-success':(formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0)}">
+                  <label class="col-lg-3 control-label">Nom :</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value="{{user.lastName}}" type="text">
+                  <input class="form-control" formControlName = "name" value="{{user.lastName}}" type="text">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0 && (errors.indexOf(1)==-1))"></span>
+                  <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0)||(errors.indexOf(1)>-1)"></span>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Prénom :</label>
+
+              <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.firstName.valid && formGroupUpdate.controls.firstName.value.length >0) || (errors.indexOf(2)>-1),'has-success':(formGroupUpdate.controls.firstName.valid && formGroupUpdate.controls.firstName.value.length >0)}">
+                  <label class="col-lg-3 control-label">Prénom :</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value="{{user.firstName}}" type="text">
+                  <input class="form-control" formControlName = "firstName" value="{{user.firstName}}" type="text">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupUpdate.controls.firstName.valid && formGroupUpdate.controls.firstName.value.length >0 && (errors.indexOf(2)==-1))"></span>
+                  <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupUpdate.controls.firstName.valid && formGroupUpdate.controls.firstName.value.length >0)||(errors.indexOf(2)>-1)"></span>
                 </div>
               </div>
+
               <div class="form-group">
-                <label class="col-lg-3 control-label">Adresse :</label>
-                <div class="col-lg-8">
-                    <ng2-completer [(ngModel)]="searchStr"  
-                    [inputClass]="['form-control']"
-                    [ngModelOptions]="{standalone: true}"
-                    [datasource]="dataService"
-                    [minSearchLength]="6"
-                    placeholder="Adresse"
-                    (ngModelChange)="refreshData()" 
-                    ></ng2-completer>
-                </div>
+                  <label class="col-lg-3 control-label">Adresse :</label>
+                  <div class="col-lg-8">
+                      <ng2-completer [(ngModel)]="searchStr"  
+                      [inputClass]="['form-control']"
+                      [ngModelOptions]="{standalone: true}"
+                      [datasource]="dataService"
+                      [minSearchLength]="6"
+                      placeholder="Adresse"
+                      (ngModelChange)="refreshData()" 
+                      ></ng2-completer>
+                  </div>
               </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Email :</label>
-                <div class="col-lg-8">
-                  <input class="form-control" value="{{user.mail}}" type="text">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Mot de passe :</label>
-                <div class="col-lg-8">
-                  <input class="form-control" value="11111122333" type="password">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-lg-3 control-label">Confirmation :</label>
-                <div class="col-lg-8">
-                  <input class="form-control" value="11111122333" type="password">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-3 control-label"></label>
-                  
-                  <input class="btn btn-primary col-lg-3 col-md-4 col-sm-4 col-xs-12" value="Modifier"  type="button">
-                  
-                  <input type="reset" class="btn btn-default col-lg-3 col-md-4 col-sm-4 col-xs-12" value="Annuler" (click)="reset()">
+              
                 
+
+              <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.mail.valid && formGroupUpdate.controls.mail.value.length >0) || (errors.indexOf(4)>-1),'has-success':(formGroupUpdate.controls.mail.valid && formGroupUpdate.controls.mail.value.length >0)}">
+                  <label class="col-lg-3 control-label">Email:</label>
+                <div class="col-lg-8">
+                  <input class="form-control" formControlName = "mail" value="{{user.mail}}" type="mail">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupUpdate.controls.mail.valid && formGroupUpdate.controls.mail.value.length >0 && (errors.indexOf(4)==-1))"></span>
+                  <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupUpdate.controls.mail.valid && formGroupUpdate.controls.mail.value.length >0)||(errors.indexOf(4)>-1)"></span>
+                </div>
               </div>
+
+              <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.password.valid && formGroupUpdate.controls.password.value.length >0) || (errors.indexOf(1)>-1),'has-success':(formGroupUpdate.controls.password.valid && formGroupUpdate.controls.password.value.length >0)}">
+                  <label class="col-lg-3 control-label">mot de passe :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" formControlName = "password" value="{{user.firstName}}" type="password">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupUpdate.controls.password.valid && formGroupUpdate.controls.password.value.length >0 && (errors.indexOf(5)==-1))"></span>
+                  <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupUpdate.controls.password.valid && formGroupUpdate.controls.password.value.length >0)||(errors.indexOf(5)>-1)"></span>
+                </div>
+              </div>
+
+              <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.confirmPassword.valid && formGroupUpdate.controls.confirmPassword.value.length >0) || (errors.indexOf(5)>-1),'has-success':(formGroupUpdate.controls.confirmPassword.valid && formGroupUpdate.controls.confirmPassword.value.length >0)}">
+                  <label class="col-lg-3 control-label">Confirmer mot de passe :</label>
+                <div class="col-lg-8">
+                  <input class="form-control" formControlName = "confirmPassword" value="{{user.firstName}}" type="password">
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="(formGroupUpdate.controls.confirmPassword.valid && formGroupUpdate.controls.confirmPassword.value.length >0 && (errors.indexOf(1)==-1))"></span>
+                  <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupUpdate.controls.confirmPassword.valid && formGroupUpdate.controls.confirmPassword.value.length >0)||(errors.indexOf(1)>-1)"></span>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                  <label class="col-md-3 control-label"></label>
+                    <input class="btn btn-primary col-lg-3 col-md-4 col-sm-4 col-xs-12" value="Modifier" (click)="update()" type="button">  
+                    <input  class="btn btn-default col-lg-3 col-md-4 col-sm-4 col-xs-12" value="Annuler" (click)="cancel()" type="button">
+                </div>
+  
+              
             </form>
           </div>
         </div>
