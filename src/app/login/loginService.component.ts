@@ -11,6 +11,7 @@ export class LoginService {
         return this.http.post(myglobals.url+'user/login', JSON.stringify({ mail:mail, password: password }))
             .map((response: Response) => {
                 let user = response.json();
+                console.log(user);
                 if (user && user.token) {
                     //this.resetCurrentUser();
                     localStorage.setItem('currentUser', JSON.stringify(user));
