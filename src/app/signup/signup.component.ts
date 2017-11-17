@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit{
     protected dataService: CompleterData;
     protected searchData = [];
     protected searchStr: string;
-
+ 
 constructor(
     private completerService: CompleterService,
     public formBuilderSignup : FormBuilder,

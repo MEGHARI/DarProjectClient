@@ -29,3 +29,7 @@
 .table-user-information > tbody > tr > td {
     border-top: 0;
 }
+.toast-bottom-center {
+    margin-bottom:15px;
+    left: 50%;
+}

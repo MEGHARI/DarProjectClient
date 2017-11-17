@@ -119,12 +119,18 @@ export class UsersAdminComponent implements OnInit {
                             us.status = -1;
                             console.log(us.id)
                             this.user.status=-1;
+                            $("#modalBanned").modal("hide");
+                            toastr.success(this.user.firstName+' bannis', '', {positionClass: "toast-bottom-center"});
                         }
                     }
-                    $("#modalBanned").modal("hide");
-                 
+                   
+                    
+                    
                 },
-                error =>{console.log(error.json())}
+                error => {
+                    $("#modalBanned").modal("hide");
+                    toastr.error(error.json()["message"]+" ", '') 
+                }
             )
         }else if(this.user.status==-1){
             this.userService.unbannUser(this.user.id).subscribe(    
@@ -134,12 +140,20 @@ export class UsersAdminComponent implements OnInit {
                         if(us.id == this.user.id){
                             us.status = 1;
                             this.user.status=1;
+                            $("#modalBanned").modal("hide");
+                            toastr.success(this.user.firstName+' remis', '', {positionClass: "toast-bottom-center"});
+                            
                         }
                     }
-                    $("#modalBanned").modal("hide");
+
+                   
                
                 },
-                error =>{console.log(error.json())}
+                error => {
+                    $("#modalBanned").modal("hide");
+                    toastr.error(error.json()["message"]+" ", '') 
+                   
+                }
             )
         }
     }
@@ -147,10 +161,17 @@ export class UsersAdminComponent implements OnInit {
         this.user = us;   
     }
     send(infoMessage : any){
-        console.log(JSON.stringify({id:this.user.id,message:infoMessage.textMessage}))
         this.userService.sendMessageToUser(this.user.id,infoMessage.textMessage).subscribe(
-            data => {console.log(data)},
-            error =>{console.log(error)}
+            data => {
+                $("#modalMessage").modal("hide");
+                toastr.success('message envoyé', '', {positionClass: "toast-bottom-center"});
+            },
+            error => {
+                $("#modalMessage").modal("hide");
+                toastr.error(error.json()["message"]+" ", '') 
+                
+            }
+
         )
     }
 
