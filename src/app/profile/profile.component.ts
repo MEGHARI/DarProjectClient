@@ -74,11 +74,7 @@ export class ProfileComponent implements OnInit {
       }
     
       update() {
-        var formModel;
-        this.formGroupUpdate.value;
-        console.log(formModel);
-        formModel.get
-        this.userService.update(formModel).subscribe(
+        this.userService.update(this.formGroupUpdate.value).subscribe(
             data => {
                 console.log(data)
             },
