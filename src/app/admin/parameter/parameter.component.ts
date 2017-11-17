@@ -44,6 +44,8 @@ export class ParameterAdminComponent implements OnInit {
             data => {           
                this.admins.push(new User(infSignup.lastName, infSignup.firstName,this.searchStr,infSignup.mail, infSignup.id, infSignup.status,"token")) 
                this.loading = false; 
+               toastr.success(infSignup.lastName+'ajouté', '', {positionClass: "toast-bottom-center"});
+               
                this.clearDatasForm();
             },
             error => {

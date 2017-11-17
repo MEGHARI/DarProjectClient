@@ -200,3 +200,7 @@ span.input-group-addon i {
 :host >>> .form .form-control{
     height: 47px;
 }
+.toast-bottom-center {
+    margin-bottom:15px;
+    left: 50%;
+}

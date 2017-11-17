@@ -1,3 +1,4 @@
+/// <reference path="../toaster.d.ts" />
 import { Component, OnInit ,Output,EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute ,NavigationEnd} from '@angular/router';
 import { AlertService} from '../alert/index';
@@ -6,19 +7,21 @@ import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
 import * as myGlobals from "../globals";
 import {AppComponent} from "../app.component"
 import { User } from "../models/user";
-declare var jQuery : any;
+declare var $ : any;
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],    
 })
 export class LoginComponent implements OnInit {
-   
+    toastCounter =0;
     loading = false;
     user : User;
+    loadingPass = false;
     public formGroupLogin: FormGroup;
+    public formGroupPass : FormGroup;
     public isConfirm : boolean = false;
-    constructor(public formBuilder : FormBuilder, 
+    constructor(public formBuilder : FormBuilder,public formBuilderPass : FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: LoginService,
@@ -33,6 +36,10 @@ export class LoginComponent implements OnInit {
             password :['',Validators.required],
             codeConfirm :['']
         })
+        this.formGroupPass = this.formBuilderPass.group({
+            mailPass : ['',Validators.required]
+        })
+        
         this.router.events
         .filter(event => event instanceof NavigationEnd)
         .subscribe(e => {
@@ -51,7 +58,7 @@ export class LoginComponent implements OnInit {
                 .subscribe(                    
                     data => {
                         myGlobals.setLogged(true);
-                        jQuery("#loginModal").modal("hide");
+                        $("#loginModal").modal("hide");
                         this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);
                     },
                     error => {
@@ -68,10 +75,8 @@ export class LoginComponent implements OnInit {
             this.authenticationService.confirmSubscription(infLogin.mail,infLogin.codeConfirm ,infLogin.password)
                 .subscribe(
                     data => {
-                        console.log(data)
-                        console.log("bingooooooo")
                         myGlobals.setLogged(true);
-                        jQuery("#loginModal").modal("hide");
+                        $("#loginModal").modal("hide");
                         this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);
                     },
                     error => {
@@ -86,6 +91,24 @@ export class LoginComponent implements OnInit {
         }
         
     }
+
+    forgotPass(forgotPass : any){
+        this.loadingPass = true;
+        this.authenticationService.forgotPass(forgotPass.mailPass).subscribe(
+            data =>{this.alertService.success(data["message"]) ;this.loadingPass = false;$("#forgot").modal().hide();},
+            error =>{this.alertService.error(error.json().error["message"]);this.loadingPass = false;$("#forgot").modal().hide();}
+        )
+       
+    }
+    hiddenMoadal(){
+        
+        $( "#mdp" ).click(function( event ) {
+            event.preventDefault();
+          });
+        
+    }
+     
+  
     
 
 }

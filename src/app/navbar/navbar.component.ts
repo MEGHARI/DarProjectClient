@@ -2,6 +2,8 @@ import { Component, OnInit,Input } from '@angular/core';
 import {User} from "../models/user"
 import {Router} from "@angular/router"
 import {UserService} from "../models/userService"
+import {GameService} from "../models/gameService"
+import { CompleterService, CompleterData } from 'ng2-completer';
 declare var $:any;
 @Component({
     selector: 'navbar',
@@ -9,15 +11,19 @@ declare var $:any;
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+    protected dataService: CompleterData;
+    protected searchData = [];
+    protected searchStr: string;
+    private completerService: CompleterService;
     public  logged : boolean;
     public user : User;
-    constructor(public router :Router,private userService : UserService) { }
+    constructor(public router :Router,private userService : UserService,private gameService : GameService) { }
 
     ngOnInit() {
         this.setUser()
      }
      logOut(){
-         alert("decconexion")
+         
          this.userService.logout().subscribe(
              data =>{
                  console.log("success")
@@ -40,6 +46,25 @@ export class NavbarComponent implements OnInit {
         }
        
     } 
+    refreshData(){
+        if(this.searchStr.length>5){
+            this.userService.searchAddress(this.searchStr).subscribe(
+            data => {
+                this.searchData = [];
+                data["games"].forEach(element => {
+                this.searchData.push(element ["name"])
+                })
+                this.dataService = this.completerService.local(this.searchData, null, null);
+            },
+            error => {
+                console.log(error)
+                //this.searchData = [];
+            });
+        }
+    }
+    searchGamesLike(){
+
+    }
 
 
 }

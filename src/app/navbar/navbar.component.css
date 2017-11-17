@@ -31,6 +31,9 @@
   .badge{
     background-color: #6D0C0C;
   }
+  :host >>> #search .form-control{
+    height: 30px;
+  }
   
  
  
