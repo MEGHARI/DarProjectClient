@@ -11,14 +11,14 @@ declare var $ : any;
     selector: 'profile',
     providers: [ProfileService],
     templateUrl: './profile.component.html',
-    styleUrls: ['./css/profile.component.css']
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
     errors =[]
     public user : User;
     protected dataService: CompleterData;
     protected searchData = [];
-    protected searchStr: string;
+    protected adresseStr: string;
     formGroupUpdate : FormGroup
     constructor(private ProfileService : ProfileService,
         private completerService: CompleterService,
@@ -36,8 +36,8 @@ export class ProfileComponent implements OnInit {
             mail : ['',Validators.required],
             password:['',[Validators.required,Validators.minLength(6)]],
             address:[''],
-            confirmPassword : ['',Validators.required]
-    
+            confirmPassword : ['',Validators.required],
+            avatar: null
         },{
             validator: PasswordValidation.MatchPassword
           })
@@ -48,14 +48,47 @@ export class ProfileComponent implements OnInit {
             this.user = undefined;
         }else {
             let infUser = JSON.parse(localStorage.getItem("currentUser"))
+            this.adresseStr = infUser["address"];
             this.user= new User(infUser["last_name"],infUser["first_name"],infUser["address"],infUser["mail"],infUser["id"],infUser["statut"],infUser["url_picture"],infUser["token"])
         }
     }
 
-
+    onFileChange(event) {
+        let reader = new FileReader();
+        if(event.target.files && event.target.files.length > 0) {
+          let file = event.target.files[0];
+          reader.readAsDataURL(file);
+          console.log(reader.result.split(',')[1])
+          reader.onload = () => {
+            this.formGroupUpdate.get('avatar').setValue({
+              filename: file.name,
+              filetype: file.type,
+              value: reader.result.split(',')[1]
+            })
+            /*this.http.post('http://ec2-54-191-113-82.us-west-2.compute.amazonaws.com:8080/DarProject/UploadImageServlet', this.form.value).subscribe(
+              data => console.log(data),
+              error => console.log(error)
+            )*/
+          };
+        }
+      }
+    
+      update() {
+        var formModel;
+        this.formGroupUpdate.value;
+        console.log(formModel);
+        formModel.get
+        this.userService.update(formModel).subscribe(
+            data => {
+                console.log(data)
+            },
+            error => console.log(error)
+        )
+      }
+      
     refreshData(){
-        if(this.searchStr.length>5){
-            this.userService.searchAddress(this.searchStr).subscribe(
+        if(this.adresseStr.length>5){
+            this.userService.searchAddress(this.adresseStr).subscribe(
             data => {
                 this.searchData = [];
                 data["all_addresses"].forEach(element => {
