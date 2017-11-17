@@ -10,7 +10,7 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import {AdminModule} from "./admin/admin.module"
 //import { AuthModule } from 'angular2-auth';
 //import { FormsModule,ReactiveFormsModule } from "@angular/forms";
-import { Ng2CompleterModule } from "ng2-completer";
+
 
 /**
  * Providers
@@ -75,20 +75,20 @@ const appRoutes: Routes = [
    { path: 'search/:name', component: SearchComponent },
    { path: 'test', component: TestComponent },
    //{ path: '', redirectTo: '/home', pathMatch: 'full' },
-   //{ path: '', component: HomeComponent },
-   { path: 'home', component: HomeComponent },
+   { path: '', component: HomeComponent },
+   { path: 'home', component: HomeComponent},
    {path :'about',component:AboutComponent},
    { path: 'signup', component: SignupComponent  },
-   { path: 'users/:id/profile', component: ProfileComponent  },
-   {path: 'users/:id/messages', component: MessagesComponent },
-   {path: 'users/:id/games', component: MyGamesComponent },
-   {path: 'users/:id/history', component: HistoryComponent},
+   { path: 'users/:id/profile', component: ProfileComponent ,canActivate: [AuthGuard] },
+   {path: 'users/:id/messages', component: MessagesComponent,canActivate: [AuthGuard] },
+   {path: 'users/:id/games', component: MyGamesComponent,canActivate: [AuthGuard] },
+   {path: 'users/:id/history', component: HistoryComponent,canActivate: [AuthGuard]},
 
 ];
 
 @NgModule({
 
-  imports: [BrowserModule,Ng2CompleterModule ,HttpModule,
+  imports: [BrowserModule ,HttpModule,
     RouterModule.forRoot(appRoutes)
     ,InfiniteScrollModule,ImageUploadModule.forRoot(),AdminModule],
   

@@ -17,10 +17,12 @@ import {GameUsersComponent} from "./gameUsers/gameUsers.component"
 import { UserGamesComponent } from "./userGames/userGames.component";
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { ParameterAdminComponent } from "./parameter/parameter.component"
+import { Ng2CompleterModule } from "ng2-completer";
+import { AuthGuardAdmin} from '../guards/index';
 const appRoutes: Routes = [
     { path:"admin/:idAdmin/home",component:HomeAdminComponent },
     { path:"admin/login",component:LoginAdminComponent },
-    { path:"admin/:idAdmin/games",component:GamesAdminComponent},
+    { path:"admin/:idAdmin/games",component:GamesAdminComponent,canActivate : [AuthGuardAdmin]},
     { path:"admin/:idAdmin/users",component:UsersAdminComponent},
     { path:"admin/:idAdmin/users/:idUser/games",component:UserGamesComponent},
     { path:"admin/:idAdmin/games/:idGame/users",component:GameUsersComponent},
@@ -32,11 +34,16 @@ const appRoutes: Routes = [
         GamesAdminComponent,UsersAdminComponent,StaticticsComponent,TruncatePipe,
         ParameterAdminComponent,GameUsersComponent,UserGamesComponent],
 
-    imports: [ CommonModule,RouterModule.forRoot(appRoutes),BrowserModule,HttpModule, ToastModule.forRoot(),FormsModule,ReactiveFormsModule],
+    imports: [ CommonModule,RouterModule.forRoot(appRoutes),BrowserModule,HttpModule, 
+        ToastModule.forRoot(),FormsModule,ReactiveFormsModule,Ng2CompleterModule],
 
     exports: [NavbarAdminComponent,HomeAdminComponent,LoginAdminComponent,AlertComponent,
         UsersAdminComponent,StaticticsComponent,TruncatePipe,ToastModule,
-        ParameterAdminComponent,FormsModule,ReactiveFormsModule,GameUsersComponent,UserGamesComponent],
-   providers: [HomeService,LoginAdminService ,AlertService]
+        ParameterAdminComponent,FormsModule,ReactiveFormsModule,
+        GameUsersComponent,UserGamesComponent,Ng2CompleterModule],
+  
+    providers: [HomeService,LoginAdminService ,AlertService,AuthGuardAdmin
+
+    ]
 })
 export class AdminModule {}

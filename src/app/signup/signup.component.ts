@@ -31,7 +31,7 @@ constructor(
     private router: Router,
     private userService: UserService,
     private alertService: AlertService){
-        this.dataService = completerService.local(this.searchData, 'address', 'address');
+        this.dataService = completerService.local(this.searchData, null,null);
     }
     
  ngOnInit(){

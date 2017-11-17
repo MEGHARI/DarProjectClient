@@ -33,7 +33,7 @@
                                     <div class="col-md-4 product_img">
                                         <img id= "image"  class="img-responsive">
                                          <br/>
-                                         <a id="users"></a>
+                                         <a id="users" [routerLink]="['/admin',idAdmin,'users',idUser,'games']" (click)="hidenModal()"></a>
                                     </div>
                                     <div class="col-md-8 product_content">
                                         <p id="summary"></p>                                

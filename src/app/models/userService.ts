@@ -19,7 +19,7 @@ constructor(private http:Http) { }
         return this.http.post(myGlobals.url+'user/register',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
     createAdmin(user:Object) {
-        return this.http.post(myGlobals.url+'/admin/create',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
+        return this.http.post(myGlobals.url+'admin/create',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
     update(user: User) {
         return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());

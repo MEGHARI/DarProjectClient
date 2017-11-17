@@ -13,12 +13,14 @@ export class UserGamesComponent implements OnInit {
     game :Game;
     games = [];
     idAdmin : number;
+    idUser : number;
     constructor(private gameService : GameService,private userService :UserService,
         private router:Router,private activatedRoute : ActivatedRoute) { 
         if(this.router.url.match("/admin/[0-9]+/users/[0-9]+/games")){
              this.activatedRoute.params.subscribe(params => {
                  this.idAdmin = +params['idAdmin']
-                 this.getGamesByUser(+params["idUser"]);
+                 this.idUser = +params["idUser"];
+                 this.getGamesByUser(this.idUser);
               });
             }
     }
@@ -30,8 +32,14 @@ export class UserGamesComponent implements OnInit {
                 $('#image').attr("src","http:"+ga.image);
                 $('#summary').html(ga.overview);
                 $('#users').html("liste d'utilisateurs");
-                $('#users').attr("href","admin/"+JSON.parse(localStorage.getItem("currentUser"))["id"]+"/games/"+ga.id+"/users")
+               // $('#users').attr("href","admin/"+JSON.parse(localStorage.getItem("currentUser"))["id"]+"/games/"+ga.id+"/users")
              });
+    }
+    hidenModal(){
+        $( "a" ).click(function( event ) {
+            event.preventDefault();
+          });
+        $("#product_view").modal("hide");
     }
     getGamesByUser(id : number){
 

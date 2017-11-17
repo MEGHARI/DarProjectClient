@@ -1,14 +1,34 @@
 <navbar-admin></navbar-admin>
-<div class="container">
+<div class="container col-xs-8">
+    <h1>Liste d'administrateurs :</h1>            
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nom et Prénom</th>
+          <th>Addresse</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let admin of admins">
+          <td>{{admin.firstName}} {{admin.lastName}}</td>
+          <td>{{admin.address}}</td>
+          <td>{{admin.mail}}</td>
+          <td>{{admin.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+   
     <div class="row main">
         <div class="panel-heading">
            <div class="panel-title text-center">
                    <h1 class="title">Ajouter un administrateur</h1>
-                   <hr />
                </div>
         </div> 
         <div class="main-login main-center">
-            <form [formGroup] ="formGroupSignup">     
+            <form [formGroup] ="formGroupSignup" class="form">     
                   <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0) || (errors.indexOf(1)>-1),'has-success':(formGroupSignup.controls.name.valid && formGroupSignup.controls.name.value.length >0)}">
                       <label for="name" class="cols-sm-2 control-label">Nom :</label>
                   <div class="cols-sm-10">
@@ -38,32 +58,19 @@
                       <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                          <input type="text" formControlName="address" class="form-control" name="username" id="username"  placeholder="Entrez votre addresse"/>
-                          <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0 && (errors.indexOf(3)==-1)"></span>
+                            <ng2-completer [(ngModel)]="searchStr"  
+                            [inputClass]="['form-control']"
+                            [ngModelOptions]="{standalone: true}"
+                            [datasource]="dataService"
+                            [minSearchLength]="6"
+                            placeholder="entrez votre addresse"
+                            (ngModelChange)="refreshData()" 
+                            ></ng2-completer>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0 && (errors.indexOf(3)==-1)"></span>
                           <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="(!formGroupSignup.controls.address.valid && formGroupSignup.controls.address.value.length >0) ||  (errors.indexOf(3)>-1)"></span>  
                         </div>
                       </div>
                     </div>
-                   <!-- <ng2-completer [(ngModel)]="searchStr"  
-                    [inputClass]="['form-control']"
-                    [ngModelOptions]="{standalone: true}"
-                    [datasource]="dataService"
-                    [minSearchLength]="6"
-                    (ngModelChange)="refreshData()" 
-                    ></ng2-completer>-->
-        
-                    <!--<div class="form-group has-feedback" [ngClass]="{'has-error':!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0,'has-success':formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0}">                
-                        <label for="username" class="cols-sm-2 control-label">Code Postal :</label>
-                        <div class="cols-sm-10">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>     
-                            <input type="text" formControlName="postalCode"  class="form-control" name="username" id="username"  placeholder="Entrez votre code postal"/>
-                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" *ngIf="formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>
-                            <span class="glyphicon glyphicon-remove  form-control-feedback" aria-hidden="true" *ngIf="!formGroupSignup.controls.postalCode.valid && formGroupSignup.controls.postalCode.value.length >0"></span>  
-                        
-                          </div>
-                        </div>
-                      </div>-->
         
             
         

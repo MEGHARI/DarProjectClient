@@ -11,7 +11,7 @@ declare var $:any;
 @Component({
     selector: 'users',
     templateUrl: './gameUsers.component.html',
-    styleUrls: ['./gameUsers.component.css']
+    styleUrls: ['./gameUsers.component.css']  
 })
 export class GameUsersComponent implements OnInit {
    
@@ -22,7 +22,7 @@ export class GameUsersComponent implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,private router : Router,
         public formBuilder : FormBuilder,private userService :UserService,
     private gameService :GameService) {
-       console.log(this.router.url)
+
        if(this.router.url.match("/admin/[0-9]+/games/[0-9]+/users")){
         this.activatedRoute.params.subscribe(params => {
             let idGame = +params["idGame"];
@@ -91,6 +91,8 @@ export class GameUsersComponent implements OnInit {
             "<b>  "+us.lastName+"  "+us.firstName+" </b> ?");
         });
     }
+
+  
     confirm(){
         if(this.user.status==1){
             console.log(true)
