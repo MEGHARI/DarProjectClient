@@ -30,6 +30,8 @@
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "jquery": "^3.2.1",
+    "mydatepicker": "^2.5.1",
+    "mydaterangepicker": "^4.1.11",
     "ng2-bootstrap": "^1.6.3",
     "ng2-completer": "^1.6.3",
     "ng2-input-autocomplete": "0.0.11",

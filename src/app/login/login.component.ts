@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
                         this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);
                     },
                     error => {
-                        console.log(error.json().error["message"])
+                        console.log(error.json())
                         if(error.json().error["message"]=="l'utilisateur doit confirmer l'inscription"){
                             this.isConfirm = true;
                         }

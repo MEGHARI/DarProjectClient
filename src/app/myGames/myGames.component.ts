@@ -16,6 +16,9 @@ export class MyGamesComponent implements OnInit {
     public id :string;
     ngOnInit() {
         this.getGames();  
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
     }
     getGames(){
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -67,7 +70,6 @@ export class MyGamesComponent implements OnInit {
     confirmDelete(){
         this.userService.deleteGameUser(this.id).subscribe(
             data => {
-                console.log(data);
                 var i = 0;
                 for(let game of this.games){
                     if(game.id == this.id){
@@ -75,8 +77,11 @@ export class MyGamesComponent implements OnInit {
                         break;
                     }
                     i++;
+                    
                 }
                 //Afficher un toast comme quoi il a réussit l'ajout
+                toastr.success('le jeux a été retiré avec succès', '', {positionClass: "toast-bottom-right"});
+                
             },
             error => {
                 console.log(error);

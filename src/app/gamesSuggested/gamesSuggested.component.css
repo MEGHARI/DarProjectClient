@@ -1,0 +1,22 @@
+a.list-group-item {
+  height:auto;
+  min-height:220px;
+}
+a.list-group-item.active small {
+  color:#fff;
+}
+.img-responsive{
+  height: 150px;
+}
+#change{
+  margin-top: 10px;
+}
+button, input, optgroup, select, textarea {
+  margin: 0px;
+  font: inherit;
+  /*color: inherit;*/
+}
+.message{
+  margin-top: 20px;
+  
+}

@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit {
     } 
     refreshData(){
         if(this.searchStr.length>3){
+            console.log("entré")
             this.gameService.autoSearchGames(this.searchStr).subscribe(
             data => {
                 this.searchData = [];
@@ -64,11 +65,8 @@ export class NavbarComponent implements OnInit {
         }
     }
     searchForExchanging(title : string){
-        console.log("entreee")
-        this.gameService.getGamesExchenged(title).subscribe(
-            data =>{console.log(data)},
-            error => (console.log(error.json()))
-        )
+        this.router.navigate(["/users/"+this.user.id+"/suggestions/"+title]);
+       
     }
 
 

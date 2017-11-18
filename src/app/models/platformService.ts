@@ -10,7 +10,7 @@ export class PlatformService {
     constructor(private http:Http) {}
 
     getPlatformsByGame(id: number) {
-        return this.http.get(myGlobals.url+"/user/platformsGame?idGame="+id, this.jwt()).map((response: Response) => response.json());
+        return this.http.get(myGlobals.url+"user/platformsGame?id_game="+id, this.jwt()).map((response: Response) => response.json());
     }
 
     private jwt() {

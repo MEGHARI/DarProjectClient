@@ -68,6 +68,9 @@ import {MyGamesComponent,MyGameService} from "./myGames/index"
 import {HistoryComponent,HistoryService} from "./history/index"
 //Pipe
 //import {TruncatePipe} from './pipes/truncate'
+import {GamesSuggestedComponent} from "./gamesSuggested/gamesSuggested.component"
+
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 const appRoutes: Routes = [
    { path: 'about', component: AboutComponent },
@@ -83,12 +86,13 @@ const appRoutes: Routes = [
    {path: 'users/:id/messages', component: MessagesComponent,canActivate: [AuthGuard] },
    {path: 'users/:id/games', component: MyGamesComponent,canActivate: [AuthGuard] },
    {path: 'users/:id/history', component: HistoryComponent,canActivate: [AuthGuard]},
+   {path: 'users/:id/suggestions/:title', component: GamesSuggestedComponent,canActivate: [AuthGuard]},
 
 ];
 
 @NgModule({
 
-  imports: [BrowserModule ,HttpModule,
+  imports: [BrowserModule ,HttpModule,MyDateRangePickerModule,
     RouterModule.forRoot(appRoutes)
     ,InfiniteScrollModule,ImageUploadModule.forRoot(),AdminModule],
   
@@ -96,7 +100,7 @@ const appRoutes: Routes = [
      HomeComponent,LoginComponent, LoginModalComponent,
    SignupComponent,ProfileComponent,NavbarComponent,
    SearchGamesComponent,SearchComponent, TestComponent,
-   MessagesComponent,MyGamesComponent,HistoryComponent,
+   MessagesComponent,MyGamesComponent,HistoryComponent,GamesSuggestedComponent
     ],
 
   providers :[

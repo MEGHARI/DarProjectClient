@@ -5,7 +5,7 @@ import {UserService} from "../../models/userService"
 import {GameService} from "../../models/gameService"
 import {User} from "../../models/user"
 import { FormBuilder,FormControl,FormGroup,Validators } from "@angular/forms";
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 
 declare var $:any;
 @Component({
@@ -120,7 +120,7 @@ export class UsersAdminComponent implements OnInit {
                             console.log(us.id)
                             this.user.status=-1;
                             $("#modalBanned").modal("hide");
-                            toastr.success(this.user.firstName+' bannis', '', {positionClass: "toast-bottom-center"});
+                            toastr.success(this.user.firstName+' bannis', '', {positionClass: "toast-bottom-right"});
                         }
                     }
                    
@@ -141,7 +141,7 @@ export class UsersAdminComponent implements OnInit {
                             us.status = 1;
                             this.user.status=1;
                             $("#modalBanned").modal("hide");
-                            toastr.success(this.user.firstName+' remis', '', {positionClass: "toast-bottom-center"});
+                            toastr.success(this.user.firstName+' remis', '', {positionClass: "toast-bottom-right"});
                             
                         }
                     }
@@ -164,7 +164,7 @@ export class UsersAdminComponent implements OnInit {
         this.userService.sendMessageToUser(this.user.id,infoMessage.textMessage).subscribe(
             data => {
                 $("#modalMessage").modal("hide");
-                toastr.success('message envoyé', '', {positionClass: "toast-bottom-center"});
+                toastr.success('message envoyé', '', {positionClass: "toast-bottom-right"});
             },
             error => {
                 $("#modalMessage").modal("hide");

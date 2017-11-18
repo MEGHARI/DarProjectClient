@@ -1,0 +1,71 @@
+<navbar></navbar>
+<div class="container">
+        <div class="row">
+            <h1 class="text-center">Liste des jeux à échanger</h1>
+            <div class="well " >
+                <div class="list-group">
+                    <a class="list-group-item " *ngFor="let gameU of gamesUsers" (click)="select(gameU.idGameUser)">
+                        <div class="media col-lg-2 col-sm-3 col-md-2 col-xs-12">
+                            <figure class="pull-left">
+                                <img class="media-object img-rounded img-responsive"  src="http://{{gameU.image}}" alt="placehold.it/350x250" >
+                                <div class="row"></div>                                                   
+                            </figure>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <h4 class="list-group-item-heading"> Description </h4>
+                            <p class="list-group-item-text">
+                                {{gameU.summary | truncate:250:true}}
+                            </p>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+                            <h5>Propriétaire : {{gameU.lastName}}</h5>
+                            <h5>Addresse :</h5>
+                            <h5>{{gameU.address}}</h5>                        
+                        </div>
+                        <div class="col-lg-12">
+                            <button type="button" id ="change" class="btn btn-primary" 
+                        data-toggle="modal"  data-target="#modalExchange" (click)="exchange(gameU.idGameUser,gameU.address)" >Echanger</button> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalExchange" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Echanger le jeu</h4>
+                    </div>
+                    <div class="modal-body" id ="content-body">
+                            <div *ngIf="error" class="alert alert-danger">Verifiez la date d'échange</div>
+                            <div class="message">
+                                <b>Distance :</b> {{distanceUsers.distance}}
+                                <br/>
+                                <b>Durée :</b> {{distanceUsers.duration}}
+                            
+                            </div>
+                                <div class="message">Veuillez séléctionner le jeu à échanger</div>
+                                <div>   
+                                    <select id="game" #selectedCategory >
+                                        <option *ngFor="let game of games" [value]="game.id">{{game.game_name}}  {{game.platform}}</option>                            
+                                    </select>
+                                </div>
+                                <div class="message">Selectionner un interval d'échange</div>
+                                <div>   
+                                        <form #myForm="ngForm" novalidate>
+                                                <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                                                                [(ngModel)]="model" required></my-date-range-picker>
+                                        </form>
+                                </div>
+                          
+                            
+                        </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                      <button type="button" [disabled]="myIdGameUser == -1 || model === null" id="confirm" (click)="confirm(selectedCategory.value)" class="btn btn-primary">Confirmer</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    </div>

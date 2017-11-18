@@ -45,13 +45,13 @@
             Selectionnez d'abords une plateform :
             <div>
                 <select id="plateformGame" [(ngModel)]="idGamePlatform">
-                        <option *ngFor="let platform of platforms" [ngValue]="platform.idPlatform">{{platform.namePlatform}}</option>
+                        <option *ngFor="let platform of platforms" [ngValue]="platform.id_platform">{{platform.name_platform}}</option>
                 </select>
             </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-          <button type="button" id="confirm" (click)="confirm(id)" class="btn btn-primary">Oui</button>
+          <button type="button" id="confirm" (click)="confirm(id)" [disabled]="idGamePlatform==0"class="btn btn-primary">Oui</button>
         </div>
       </div>
     </div>

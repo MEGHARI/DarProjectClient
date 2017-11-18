@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
     public user : User;
     public name : string;
     public id:number;
-    public idGamePlatform;
+    public idGamePlatform = 0;
     public platforms = [];
     constructor(private gameService : GameService, private platformService : PlatformService,
         private userService: UserService,
@@ -88,6 +88,9 @@ export class SearchComponent implements OnInit {
             data => {
                 console.log(data);
                 //Afficher un toast comme quoi il a réussit l'ajout
+                toastr.success('Jeux ajouté avec succès', '', {positionClass: "toast-bottom-right"});
+                this.idGamePlatform = 0;
+                
             },
             error => {
                 console.log(error);}
