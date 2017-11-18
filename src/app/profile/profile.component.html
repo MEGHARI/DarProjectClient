@@ -5,9 +5,9 @@
           <!-- left column -->
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-              <img src="http://lorempixel.com/200/200/people/9/" class="avatar img-circle img-thumbnail" alt="avatar">
+              <img src="{{user.urlPicture}}" class="avatar img-circle img-thumbnail" alt="avatar">
               <h6>Uploader une photo...</h6>
-              <input type="file" class="text-center center-block well well-sm">
+              <input type="file" id="avatar" (change)="onFileChange($event)" class="text-center center-block well well-sm">
             </div>
           </div>
           <!-- edit form column -->
@@ -15,7 +15,6 @@
             <h3>Information</h3>
 
             <form class="form-horizontal" role="form" [formGroup] ="formGroupUpdate">
-
               <div class="form-group has-feedback " [ngClass]="{'has-error':(!formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0) || (errors.indexOf(1)>-1),'has-success':(formGroupUpdate.controls.name.valid && formGroupUpdate.controls.name.value.length >0)}">
                   <label class="col-lg-3 control-label">Nom :</label>
                 <div class="col-lg-8">
@@ -37,8 +36,8 @@
               <div class="form-group">
                   <label class="col-lg-3 control-label">Adresse :</label>
                   <div class="col-lg-8">
-                      <ng2-completer [(ngModel)]="searchStr"  
-                      [inputClass]="['form-control']"
+                      <ng2-completer [(ngModel)]="adresseStr"  
+                      [inputClass]="['form-control', 'form-adresse']"
                       [ngModelOptions]="{standalone: true}"
                       [datasource]="dataService"
                       [minSearchLength]="6"

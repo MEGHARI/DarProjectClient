@@ -21,8 +21,9 @@ constructor(private http:Http) { }
     createAdmin(user:Object) {
         return this.http.post(myGlobals.url+'admin/create',JSON.stringify(user),this.jwt()).map((response: Response) => response.json());
     }
-    update(user: User) {
-        return this.http.put('/api/users/' + user.id, user, this.jwt()).map((response: Response) => response.json());
+    update(user: any) {
+        return this.http.put(myGlobals.url+'user/update', user,
+        this.jwt()).map((response: Response) => response.json());
     }
 
     bannUser(ident: number) {
