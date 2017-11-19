@@ -40,6 +40,8 @@ export class GameService {
         
     }
 
+
+
     private jwt() {
         
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
