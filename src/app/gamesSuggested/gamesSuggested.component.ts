@@ -57,13 +57,9 @@ export class GamesSuggestedComponent implements OnInit {
             error => (console.log(error) )
         )
     }
-    exchange(gameUId,gameUAddress){
+    exchange(gameUId){
         this.idGameUser = gameUId;
-        this.addressReceiver =gameUAddress;
         this.getGames()
-        console.log(this.getMyaddress())
-        console.log("receiver"+this.addressReceiver)
-        this.getDistance(this.getMyaddress(),this.addressReceiver);
     }
 
     getGames(){
@@ -83,7 +79,6 @@ export class GamesSuggestedComponent implements OnInit {
         );
     }
     confirm(myIdGameUser){
-        console.log(this.model.beginDate.day+"-"+this.model.beginDate.month+"-"+this.model.beginDate.year+" "+new Date())
         if(this.model){
             console.log(myIdGameUser)
             console.log(this.idGameUser)
@@ -115,23 +110,69 @@ export class GamesSuggestedComponent implements OnInit {
     select(id){
      this.selected = id;
     }
-    getDistance(addr1,addr2){
-        this.userService.getDistance(addr1,addr2).subscribe(
-            data => {
-                this.distanceUsers ={duration : data["distance_duration"][0]["duration"],distance :data["distance_duration"][0]["distance"]};
-            },
-            error => {
-                this.distanceUsers ={duration : "Non définie",distance :"Non définie" };
-                
-            }
-        )
 
-    }
     getMyaddress(){
         return JSON.parse(localStorage.getItem("currentUser"))["address"]
     }
     annuler(){
         this.error = false;
+    }
+    onChange(mode,addressReceiver) {
+        if(mode =="voiture"){
+            this.userService.getDistance(this.getMyaddress(),addressReceiver,"driving").subscribe(
+                data => {
+                    console.log(data)
+                    this.distanceUsers ={duration : data["distance_duration"][0]["duration"],distance :data["distance_duration"][0]["distance"]};
+                },
+                error => {
+                    this.distanceUsers ={duration : "Non définie",distance :"Non définie" };
+                    
+                }
+            )
+            toastr.info("Durée "+this.distanceUsers.duration+"<br />"+"Distance"+this.distanceUsers.distance)
+            
+        }else if (mode ="marche"){
+
+            this.userService.getDistance(this.getMyaddress(),addressReceiver,"walking").subscribe(
+                data => {
+                    this.distanceUsers ={duration : data["distance_duration"][0]["duration"]===undefined?"indisponoble":data["distance_duration"][0]["duration"],distance :data["distance_duration"][0]["distance"]===""?"indisponible":data["distance_duration"][0]["distance"]};
+                },
+                error => {
+                    this.distanceUsers ={duration : "Non définie",distance :"Non définie" };
+                    
+                }
+            )
+            toastr.info("Durée "+this.distanceUsers.duration+"<br />"+"Distance"+this.distanceUsers.distance)
+            
+
+        }else if (mode="transport public"){
+            this.userService.getDistance(this.getMyaddress(),addressReceiver,"transit").subscribe(
+                data => {
+                    this.distanceUsers ={duration : data["distance_duration"][0]["duration"],distance :data["distance_duration"][0]["distance"]};
+                },
+                error => {
+                    this.distanceUsers ={duration : "Non définie",distance :"Non définie" };
+                    
+                }
+               
+            )
+            toastr.info("Durée "+this.distanceUsers.duration+"<br />"+"Distance"+this.distanceUsers.distance)
+
+        }else if(mode="vélo"){
+            this.userService.getDistance(this.getMyaddress(),addressReceiver,"bicycling").subscribe(
+                data => {
+                    this.distanceUsers ={duration : data["distance_duration"][0]["duration"],distance :data["distance_duration"][0]["distance"]};
+                },
+                error => {
+                    this.distanceUsers ={duration : "Non définie",distance :"Non définie" };
+                    
+                }
+            )
+            toastr.info("Durée "+this.distanceUsers.duration+"<br />"+"Distance"+this.distanceUsers.distance)
+            
+
+        }
+        console.log(this.distanceUsers)
     }
 
 }

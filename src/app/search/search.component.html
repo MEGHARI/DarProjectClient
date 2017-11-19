@@ -44,7 +44,7 @@
             Ajouter le jeu <b id="gameName"></b> à votre bibliothèque ?<br />
             Selectionnez d'abords une plateform :
             <div>
-                <select id="plateformGame" [(ngModel)]="idGamePlatform">
+                <select id="plateformGame" [(ngModel)]="idGamePlatform" class="form-control">
                         <option *ngFor="let platform of platforms" [ngValue]="platform.id_platform">{{platform.name_platform}}</option>
                 </select>
             </div>

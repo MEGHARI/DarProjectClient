@@ -22,7 +22,6 @@ export class UsersAdminComponent implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,private router : Router,
         public formBuilder : FormBuilder,private userService :UserService,
     private gameService :GameService) {
-       console.log(this.router.url)
        if(this.router.url.match("/admin/[0-9]+/users")){
             this.activatedRoute.params.subscribe(params => {
                 this.idAdmin= +params["idAdmin"]

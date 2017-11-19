@@ -83,8 +83,8 @@ constructor(private http:Http) { }
             return this.http.post(myGlobals.url+'exchange/create',object,this.jwt()).map((response: Response) => response.json());
     }
     
-    getDistance(address1:String,address2 :string){
-        return this.http.get(myGlobals.url+'service/googlemapDistanceDuration?addr1='+address1+"&addr2="+address2,this.jwt()).map((response: Response) => response.json());
+    getDistance(address1:String,address2 :string,mode :string){
+        return this.http.get(myGlobals.url+'service/googlemapDistanceDuration?addr1='+address1+"&addr2="+address2+"&mode="+mode,this.jwt()).map((response: Response) => response.json());
         
     }
 

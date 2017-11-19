@@ -4,22 +4,28 @@
         <div class="row">
           <!-- left column -->
           <div class="col-md-4 col-sm-6 col-xs-12">
+              <h4><b>{{user.lastName}}</b></h4>
             <div class="text-center">
-              <img src="" class="avatar img-circle img-thumbnail" alt="avatar">
+              <img src="http://localhost:8080/DarProject/img/{{user.picture}}" class="avatar img-circle img-thumbnail" alt="avatar">
+            </div>
+            <div>
+                    <button class="btn btn-sm btn-primary" type="button"
+                     data-placement="top" title="envoyer un message" (click)="sendMessage(user)" 
+                    data-toggle="modal" data-target="#modalMessage">
+                    Contacter</button>
             </div>
           </div>
           <!-- edit form column -->
           <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <h3>liste de jeux</h3>
-            <div class="search-results" *ngFor="let game of games">
+            <div class="search-results">
                 <div class="full-width bg-transparent">
                     <div class="page">
-                        <h3>Résultat de la recherche :</h3>
                         <div class="listGames">
                             <div *ngFor="let game of games">
                                 <div class="game" (click)="alert(this)" style="cursor:pointer">
                                     <div class="thumb">
-                                         <img *ngIf="game.image" src="http:{{game.image.url}}">
+                                         <img *ngIf="game.image" src="http:{{game.image}}">
                                         <img *ngIf="!game.image" src="https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF">
                                     </div>
                                     <div class="informations">
@@ -28,11 +34,7 @@
                                         <div>
                                             <b>Date release :</b> {{game.dateRelease | date}}
                                         </div>
-                                        <button *ngIf="user" type="button" (click)="dynamicModal(game.id, game.title)" class="btn btn-success"
-                                        data-toggle="modal" data-target="#modalDescription">Ajouter</button>
-                        
-                                        <button *ngIf="user" type="button" class="btn btn-primary" 
-                                        data-toggle="modal" data-target="#modalDescription">Demander</button>
+                    
                                     </div>
                                 </div>
                                 <hr class="style-two" />
@@ -46,3 +48,28 @@
           </div>
         </div>
       </div>
+      
+
+      <div class="modal fade" id="modalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Message</h4>
+                </div>
+                <div class="modal-body" id ="content-body">
+                        <form class="form-horizontal" role="form" [formGroup]="formGroupMessage">
+                                <textarea class="form-control" class="form-control" formControlName="textMessage" rows="3"></textarea>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                        <button type="button" id="confirm"  class="btn btn-primary" 
+                                        (click)="send(formGroupMessage.value)">envoyer</button>
+                                </div>
+                        </form>
+                   
+                </div>
+                
+              </div>
+            </div>
+        </div>
+    

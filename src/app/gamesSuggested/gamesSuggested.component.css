@@ -20,3 +20,11 @@ button, input, optgroup, select, textarea {
   margin-top: 20px;
   
 }
+.form-control{
+  width: 50%;
+}
+
+.toast-top-right {
+  top: 40px;
+  right: 12px;
+}
