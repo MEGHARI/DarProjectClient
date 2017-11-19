@@ -1,27 +1,41 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {User} from "../models/user"
 import {Router} from "@angular/router"
 import {UserService} from "../models/userService"
 import {GameService} from "../models/gameService"
 import { CompleterService, CompleterData } from 'ng2-completer';
+import * as myGlobals from "../globals";
+
 declare var $:any;
 @Component({
     selector: 'navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
     protected dataService: CompleterData;
     protected searchData = [];
     protected searchStr: string;
     public  logged : boolean;
     public user : User;
-    constructor( private completerService: CompleterService,public router :Router,private userService : UserService,private gameService : GameService) { }
+    public nbNotifications:number;
+    public nbMessages:number;
+    protected intervale;
+
+    constructor(private completerService: CompleterService,
+        public router :Router,
+        private userService : UserService,
+        private gameService : GameService)
+        {
+            this.intervale = setInterval(() => {this.getAllNotifications();},1000*19)
+        }
 
     ngOnInit() {
+        this.getCacheNotifications();
         this.setUser()
      }
-     logOut(){
+
+    logOut(){
          
          this.userService.logout().subscribe(
              data =>{
@@ -69,5 +83,29 @@ export class NavbarComponent implements OnInit {
        
     }
 
+    getAllNotifications(){
+        this.userService.getNotifications().subscribe(
+            data => {
+                console.log(data);
+                myGlobals.setNbNotifications(data.notifications_count["system_count"]);
+                myGlobals.setNbMessage(data.notifications_count["message_count"]);
+                this.nbNotifications = myGlobals.nbNotifications
+                this.nbMessages = myGlobals.nbMessages
+            },
+            error =>{
+                console.log(error.json());
+            }
+        )
+    }
 
+    ngOnDestroy() {
+        if (this.intervale) {
+          clearInterval(this.intervale);
+        }
+    }
+
+    getCacheNotifications(){
+        this.nbMessages = myGlobals.nbMessages;
+        this.nbNotifications = myGlobals.nbNotifications;
+    }
 }

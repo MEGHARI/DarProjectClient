@@ -98,6 +98,7 @@ export class SearchComponent implements OnInit {
         console.log(idGame+" + "+this.idGamePlatform);
         $("#modalDescription").modal("hide");
     }
+    
     setUser(){
         if(localStorage.getItem("currentUser") === null){
            this.user = undefined;

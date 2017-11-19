@@ -33,10 +33,7 @@ constructor(private http:Http) { }
         return this.http.put(myGlobals.url+'admin/unbanned' ,JSON.stringify({id:ident}), this.jwt()).map((response: Response) => response.json());
         
     }
-    sendMessageToUser(idReceiver : number,messageText:string){
-        return this.http.post(myGlobals.url+'message/send',JSON.stringify({id:idReceiver,message:messageText}),this.jwt()).map((response: Response) => response.json());
-        
-    }
+
     getMessagesByUser(id : number){
         return this.http.get(myGlobals.url+"message/list", this.jwt()).map((response: Response) => response.json());
          
@@ -91,10 +88,24 @@ constructor(private http:Http) { }
         
     }
 
-    // private helper methods
+    sendMessageToUser(idReceiver : number, messageText:string){
+        return this.http.post(myGlobals.url+'user/message/send',JSON.stringify({id:idReceiver,message:messageText}),this.jwt()).map((response: Response) => response.json());
+        
+    }
+
+    getNotifications(){
+        return this.http.get(myGlobals.url+'user/notifications', this.jwt()).map((response: Response) => response.json());  
+    }
+
+    getMessage(id:number, page:number){
+        return this.http.get(myGlobals.url+'user/message/list?id='+id+'&page='+page, this.jwt()).map((response: Response) => response.json());  
+    }
+    
+    getConversations(){
+        return this.http.get(myGlobals.url+'user/message/conversations', this.jwt()).map((response: Response) => response.json());     
+    }
 
     private jwt() {
-        // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (currentUser && currentUser.token) {
             let headers = new Headers({ 'token': currentUser.token });
