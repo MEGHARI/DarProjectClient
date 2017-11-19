@@ -14,6 +14,7 @@ export class GamesSuggestedComponent implements OnInit {
     selected :number = -1;
     gamesUsers = [];
     games = []
+    myId : number;
     error :boolean;
     addressReceiver ;
     distanceUsers = {distance : "",duration :""};
@@ -29,6 +30,8 @@ export class GamesSuggestedComponent implements OnInit {
         private gameService :GameService,private userService :UserService) {
             this.activatedRoute.params.subscribe(params => {
                 let title= params["title"];
+                this.myId = +params["id"]
+                
                 console.log(title)
                 this.getSuggestions(title);
              });
@@ -42,11 +45,12 @@ export class GamesSuggestedComponent implements OnInit {
     getSuggestions(title : string){
         this.gamesUsers =[]
         this.gameService.getGamesExchenged(title).subscribe(
-            data =>{console.log(data);data["games_suggested"].forEach(element => {
+            data =>{console.log(data);
+                data["games_suggested"].forEach(element => {
                 this.gamesUsers.push({
                     gameName : element["game_name"],idGameUser : element["id_game_user"],
                     platform : element["platforme_name"], address : element["adress"],image : element["cover"]
-                    ,summary : element["summary"],firstName :element["first_name"],lastName :element["last_name"]
+                    ,summary : element["summary"],firstName :element["first_name"],lastName :element["last_name"],idUser:element["id_user"]
                 })
             });
         },
@@ -89,18 +93,21 @@ export class GamesSuggestedComponent implements OnInit {
                     idGameUserReceiver:this.idGameUser,dateExchange:dateExchage,dateRetrun:dateReturn}).subscribe(
                         data => { 
                             this.error = false;
+                            $("#modalExchange").modal("hide");
                             toastr.success("Demande d'échange envoyée", '', {positionClass: "toast-bottom-right"});
                             },
                         error => {
-                            if(error.json().error["code"]==17)
-                                toastr.error("Vous avez déja effectué cette demande d'échange", '', {positionClass: "toast-bottom-right"})
+                            if(error.json().error["code"]==17) {
+                                $("#modalExchange").modal("hide");
+                                toastr.error("Vous avez déja effectué cette demande d'échange", '', {positionClass: "toast-bottom-right"})                                
+                            }
                             else if (error.json().error["code"]==8)
                                 this.error = true;
                             else 
                                 toastr.error("Erreur", '', {positionClass: "toast-bottom-right"})
                         }
                     )
-                    $("#modalExchange").modal("hide");
+                   
           
         }
        
@@ -122,6 +129,9 @@ export class GamesSuggestedComponent implements OnInit {
     }
     getMyaddress(){
         return JSON.parse(localStorage.getItem("currentUser"))["address"]
+    }
+    annuler(){
+        this.error = false;
     }
 
 }

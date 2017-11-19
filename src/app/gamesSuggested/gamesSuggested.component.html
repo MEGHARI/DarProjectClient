@@ -18,7 +18,7 @@
                             </p>
                         </div>
                         <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                            <h5>Propriétaire : {{gameU.lastName}}</h5>
+                            <h5>Propriétaire : <a [routerLink]="['/users',myId,'profile',gameU.idUser]">{{gameU.firstName}}</a></h5>
                             <h5>Addresse :</h5>
                             <h5>{{gameU.address}}</h5>                        
                         </div>
@@ -62,7 +62,7 @@
                             
                         </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                      <button type="button" class="btn btn-default" (click)="annuler()" data-dismiss="modal">Annuler</button>
                       <button type="button" [disabled]="myIdGameUser == -1 || model === null" id="confirm" (click)="confirm(selectedCategory.value)" class="btn btn-primary">Confirmer</button>
                     </div>
                   </div>
