@@ -16,7 +16,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     protected intervale;
 
     constructor(private userService:UserService,private router :Router) {
-             this.intervale = setInterval(() => {this.refreshMessage(this.idReceiver);},1000*5)
+            // this.intervale = setInterval(() => {this.refreshMessage(this.idReceiver);},1000*5)
     }
     ngOnInit() { 
         this.setUser();

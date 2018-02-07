@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         private userService : UserService,
         private gameService : GameService)
         {
-            this.intervale = setInterval(() => {this.getAllNotifications();},1000*19)
+            //this.intervale = setInterval(() => {this.getAllNotifications();},1000*19)
         }
 
     ngOnInit() {

@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
             this.authenticationService.login(infLogin.mail,infLogin.password)
                 .subscribe(                    
                     data => {
+                        console.log(data);
                         myGlobals.setLogged(true);
                         $("#loginModal").modal("hide");
                         this.router.navigate(['/users/'+JSON.parse(localStorage.getItem("currentUser"))["id"]+'/profile']);

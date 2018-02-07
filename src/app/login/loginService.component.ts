@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import * as myglobals from "../globals"
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/map'
 import * as myGlobals from "../globals"
 declare var $ : any;
@@ -9,8 +9,14 @@ declare var $ : any;
 export class LoginService {
     constructor(private http: Http) { }
 
+
+    /**
+     * 
+     * When user login , we send in the header informations of FingerPrint. 
+     */
     login(mail: any, password: any) {
-        return this.http.post(myglobals.url+'user/login', JSON.stringify({ mail:mail, password: password }))
+
+        return this.http.post(myglobals.url+'user/login',JSON.stringify({ mail:mail, password: password}),this.fingerPrint())
             .map((response: Response) => {
                 let user = response.json();
                 console.log(user);
@@ -48,6 +54,27 @@ export class LoginService {
     }
     hiddenMoadal(){
         $("")
+    }
+
+
+    /**
+     * this function send to server informations FingerPrint of incoming user.
+     */
+    private fingerPrint() {
+        //the properties added in order to use fingerPrint
+        
+        // Timezone offset of client (example -60).
+        var timezone = new Date().getTimezoneOffset()
+        // Resolution of screen used by client (height,width,colorDepth)
+        var resolution = "width :"+window.screen.width+" height:"
+            +window.screen.height+" colorDepth:"+window.screen.colorDepth;  
+        // To check if cookie is enabled or not. 
+        var cookieEnabled = window.navigator.cookieEnabled? 1 : 0;
+
+        let headers = new Headers({'timezone':timezone,
+        'resolution':resolution,'enabledCookie':cookieEnabled});
+
+        return new RequestOptions({ headers: headers });
     }
 
 

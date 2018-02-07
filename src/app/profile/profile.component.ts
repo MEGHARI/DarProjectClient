@@ -28,6 +28,15 @@ export class ProfileComponent implements OnInit {
         }
 
     ngOnInit() { 
+        /**
+         * get last fingerprint from server after saves in localstorage and display this informations to the user.
+         */
+        let infUser = JSON.parse(localStorage.getItem("currentUser"));
+        let  cookieInf = infUser["enabledCookie"] === 1 ? "true" : "false";
+        let resolution = infUser["resolution"] ;
+        let  timezone = infUser["timezone"] ;
+        let nbrConnexion = infUser["nbrConnexion"] ;
+        toastr.info("screen resolution is "+resolution+", \n time zone :"+timezone+", \n cookies used : "+cookieInf+", \n and number of connexions "+nbrConnexion,'Your last fingerPrint informations \n',{positionClass: "toast-top-center"});
         this.errors =[]
         this.setUser();
         this.formGroupUpdate = this.formBuilder.group({
