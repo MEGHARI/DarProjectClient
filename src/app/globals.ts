@@ -6,7 +6,7 @@ import {User} from "./models/user"
 // vars and consts
 export var signupSuccess : boolean ;
 export var  islogged : boolean = false;
-export const url : string = 'http://localhost:8080/DarProject/'
+export const url : string = 'http://ec2-34-203-205-100.compute-1.amazonaws.com:8080/DarProject/'
 export var nbMessages : number;
 export var nbNotifications : number;
 
@@ -26,4 +26,3 @@ export function setNbMessage(nb:number){
 export function setNbNotifications(nb:number){
     nbNotifications = nb;
 }
-
